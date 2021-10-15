@@ -1,6 +1,7 @@
 package com.nopcommerce.user;
 
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -9,25 +10,30 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import com.beust.jcommander.Parameter;
+
 import common.BasePage;
-import pageObjects.HomePageObject;
-import pageObjects.LoginPageObject;
-import pageObjects.RegisterPageObject;
+import common.BaseTest;
+import pageObjects.nopCommerce.HomePageObject;
+import pageObjects.nopCommerce.LoginPageObject;
+import pageObjects.nopCommerce.RegisterPageObject;
 
 public class Level_03_Apply_Page_Object {
 	WebDriver driver;
-	String projectPath = System.getProperty("user.dir");
 	String email, password;
-	
+	String projectPath = System.getProperty("user.dir");
 	
 
 	@BeforeClass
 	public void beforeClass() {
+		
 		System.setProperty("webdriver.chrome.driver", projectPath + "\\browserDrivers\\chromedriver.exe");
 		driver = new ChromeDriver();
-		
+		driver.manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);
+
 		 email = "dark" + RandomInt() + "@gmail.com";
 		 password = "123123";
 	}

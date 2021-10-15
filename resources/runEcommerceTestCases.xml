@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Nopcomerce">
+<parameter name = "url" value = "https://demo.nopcommerce.com/"/>
+
+	<test name="run on Chrome">
+		<parameter name="browser" value="Chrome" />
+		<classes>
+			<class
+				name="com.nopcommerce.user.Level_04_Register_Login_Multiple_Browser" />
+		</classes>
+	</test>
+
+
+	<test name="run on Edge">
+		<parameter name="browser" value="Edge" />
+		<classes>
+			<class
+				name="com.nopcommerce.user.Level_04_Register_Login_Multiple_Browser" />
+		</classes>
+	</test>
+
+
+	<test name="run on Firefox">
+		<parameter name="browser" value="Firefox" />
+		<classes>
+			<class
+				name="com.nopcommerce.user.Level_04_Register_Login_Multiple_Browser" />
+		</classes>
+	</test>
+</suite>

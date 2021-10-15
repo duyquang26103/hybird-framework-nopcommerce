@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<suite  name="Ecommerce">
-  <test name="run on CHROME">
-    <classes>
-      <class name="com.nopcommerce.user.Level_03_Apply_Page_Object"/>
-    </classes>
-  </test>
-</suite>
