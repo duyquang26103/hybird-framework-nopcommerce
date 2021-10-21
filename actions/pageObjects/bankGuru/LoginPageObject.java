@@ -53,6 +53,4 @@ public class LoginPageObject extends BasePage {
 
 	}
 
-
-
 }

@@ -38,11 +38,11 @@ public class Level_02_Apply_BasePage extends BasePage {
 		waitForElementClickable(driver, "//button[@id='register-button']");
 		clickToElement(driver, "//button[@id='register-button']");
 
-		Assert.assertEquals(getTextElement(driver, "//span[@id='FirstName-error']"), "First name is required.");
-		Assert.assertEquals(getTextElement(driver, "//span[@id='LastName-error']"), "Last name is required.");
-		Assert.assertEquals(getTextElement(driver, "//span[@id='Email-error']"), "Email is required.");
-		Assert.assertEquals(getTextElement(driver, "//span[@id='Password-error']"), "Password is required.");
-		Assert.assertEquals(getTextElement(driver, "//span[@id='ConfirmPassword-error']"), "Password is required.");
+		Assert.assertEquals(getElementText(driver, "//span[@id='FirstName-error']"), "First name is required.");
+		Assert.assertEquals(getElementText(driver, "//span[@id='LastName-error']"), "Last name is required.");
+		Assert.assertEquals(getElementText(driver, "//span[@id='Email-error']"), "Email is required.");
+		Assert.assertEquals(getElementText(driver, "//span[@id='Password-error']"), "Password is required.");
+		Assert.assertEquals(getElementText(driver, "//span[@id='ConfirmPassword-error']"), "Password is required.");
 
 	}
 

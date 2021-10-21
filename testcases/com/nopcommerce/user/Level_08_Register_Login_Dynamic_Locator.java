@@ -10,9 +10,11 @@ import org.testng.annotations.Test;
 import common.BaseTest;
 import pageObjects.nopCommerce.HomePageObject;
 import pageObjects.nopCommerce.LoginPageObject;
+import pageObjects.nopCommerce.MyAccountPageObject;
+import pageObjects.nopCommerce.PageGeneratorManager;
 import pageObjects.nopCommerce.RegisterPageObject;
 
-public class Level_04_Register_Login_Multiple_Browser extends BaseTest {
+public class Level_08_Register_Login_Dynamic_Locator extends BaseTest {
 	WebDriver driver;
 	String email, password;
 
@@ -21,18 +23,17 @@ public class Level_04_Register_Login_Multiple_Browser extends BaseTest {
 	public void beforeClass(String browserName, String appUrl) {
 
 		driver = getDriverBrowsers(browserName, appUrl);
-		homePage = new HomePageObject(driver);
-
-		email = "automation1@gmail.com";
+		homePage = PageGeneratorManager.getHomePage(driver);
+		
+		
+		email = RandomEmail();
 		password = "123123";
 	}
 
 	@Test
 	public void TC_01_Register_To_System() {
 
-		homePage.clickToRegisterPage();
-
-		registerPage = new RegisterPageObject(driver);
+		registerPage = homePage.clickToRegisterPage();
 
 		registerPage.clickToGenderRadioButton();
 
@@ -50,28 +51,33 @@ public class Level_04_Register_Login_Multiple_Browser extends BaseTest {
 
 		Assert.assertTrue(registerPage.isSuccessMessageDisplayed());
 
-		registerPage.clickToLogOutButton();
+		homePage = registerPage.clickToLogOutButton();
 
-		homePage = new HomePageObject(driver);
+	
 
 	}
 
 	@Test
 	public void TC_02_Login_To_System() {
-		homePage.clickToLoginButton();
-
-		loginPage = new LoginPageObject(driver);
+		loginPage = homePage.clickToLoginButton();
 
 		loginPage.inputEmailTextBox(email);
 
 		loginPage.inputPasswordTextBox(password);
 
-		loginPage.clickToLoginButton();
+		homePage = loginPage.clickToLoginButton();
 
-		homePage = new HomePageObject(driver);
+		
 
 		Assert.assertTrue(homePage.isHomePageSliderDisplayed());
 
+	}
+	
+	@Test 
+	public void TC_03_Dynamic_Locator() {
+		homePage.openFooterPageByName(driver, "My account");
+		myAccountPage = PageGeneratorManager.getMyAccountPage(driver);
+		
 	}
 
 	@AfterClass
@@ -84,5 +90,6 @@ public class Level_04_Register_Login_Multiple_Browser extends BaseTest {
 	HomePageObject homePage;
 	LoginPageObject loginPage;
 	RegisterPageObject registerPage;
+	MyAccountPageObject myAccountPage;
 
 }

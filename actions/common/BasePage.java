@@ -15,6 +15,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import pageUIs.nopCommerce.BasePageUI;
+
 public class BasePage {
 
 	public static BasePage getBasePage() {
@@ -116,9 +118,17 @@ public class BasePage {
 	private By getXpath(String xpathlocator) {
 		return By.xpath(xpathlocator);
 	}
+	
+	public String getDymamicLocator(String locator, String...params) {
+		return String.format(locator,(Object[]) params);
+	}
 
 	public void clickToElement(WebDriver driver, String xpathlocator) {
 		getWebElement(driver, xpathlocator).click();
+	}
+	
+	public void clickToElement(WebDriver driver, String xpathlocator, String...params) {
+		getWebElement(driver, getDymamicLocator(xpathlocator,params)).click();
 	}
 
 	public void sendKeyToElement(WebDriver driver, String xpathlocator, String textValue) {
@@ -126,14 +136,30 @@ public class BasePage {
 		element.clear();
 		element.sendKeys(textValue);
 	}
+	
+	public void sendKeyToElement(WebDriver driver, String xpathlocator, String textValue, String...params) {
+		xpathlocator = getDymamicLocator(xpathlocator, params);
+		WebElement element = getWebElement(driver, xpathlocator);
+		element.clear();
+		element.sendKeys(textValue);
+	}
 
-	public String getElementText(WebDriver driver, String xpathlocator) {
+	protected String getElementText(WebDriver driver, String xpathlocator) {
 		return getWebElement(driver, xpathlocator).getText();
+	}
+	
+	protected String getElementText(WebDriver driver, String xpathlocator, String...params) {
+		return getWebElement(driver, getDymamicLocator(xpathlocator, params)).getText();
 	}
 
 	public void selectItemInDefaultDropdown(WebDriver driver, String xpathlocator, String textItem) {
 		Select select = new Select(getWebElement(driver, xpathlocator));
 		select.selectByValue(textItem);
+	}
+	
+	public void selectItemInDefaultDropdownByText(WebDriver driver, String xpathlocator, String textItem) {
+		Select select = new Select(getWebElement(driver, xpathlocator));
+		select.selectByVisibleText(textItem);
 	}
 
 	public String getSelectItemDefaultDropdown(WebDriver driver, String xpathlocator) {
@@ -171,10 +197,6 @@ public class BasePage {
 		return getWebElement(driver, xpathlocator).getAttribute(attributeName);
 	}
 
-	public String getTextElement(WebDriver driver, String xpathlocator) {
-		return getWebElement(driver, xpathlocator).getText();
-	}
-
 	public String getCssValue(WebDriver driver, String xpathlocator, String propertyName) {
 		return getWebElement(driver, xpathlocator).getCssValue(propertyName);
 	}
@@ -203,6 +225,9 @@ public class BasePage {
 
 	public boolean isControlDisplayed(WebDriver driver, String xpathlocator) {
 		return getWebElement(driver, xpathlocator).isDisplayed();
+	}
+	public boolean isControlDisplayed(WebDriver driver, String xpathlocator, String...params) {
+		return getWebElement(driver, getDymamicLocator(xpathlocator, params)).isDisplayed();
 	}
 
 	public boolean isControlSelected(WebDriver driver, String xpathlocator) {
@@ -335,6 +360,11 @@ public class BasePage {
 		WebDriverWait explicit = new WebDriverWait(driver, longTimeout);
 		explicit.until(ExpectedConditions.visibilityOfElementLocated(getXpath(xpathlocator)));
 	}
+	
+	public void waitForElementVisible(WebDriver driver, String xpathlocator, String...params) {
+		WebDriverWait explicit = new WebDriverWait(driver, longTimeout);
+		explicit.until(ExpectedConditions.visibilityOfElementLocated(getXpath(getDymamicLocator(xpathlocator, params))));
+	}
 
 	public void waitForAllsElementVisible(WebDriver driver, String xpathlocator) {
 		WebDriverWait explicit = new WebDriverWait(driver, longTimeout);
@@ -354,6 +384,16 @@ public class BasePage {
 	public void waitForElementClickable(WebDriver driver, String xpathlocator) {
 		WebDriverWait explicit = new WebDriverWait(driver, longTimeout);
 		explicit.until(ExpectedConditions.elementToBeClickable(getXpath(xpathlocator)));
+	}
+	
+	public void waitForElementClickable(WebDriver driver, String xpathlocator, String...params) {
+		WebDriverWait explicit = new WebDriverWait(driver, longTimeout);
+		explicit.until(ExpectedConditions.elementToBeClickable(getXpath(getDymamicLocator(xpathlocator, params))));
+	}
+	
+	public void openFooterPageByName(WebDriver driver, String pageName) {
+		waitForElementClickable(driver, BasePageUI.FOOTER_LINK, pageName);
+		clickToElement(driver, BasePageUI.FOOTER_LINK,pageName);
 	}
 
 	private long shortTimeout = 5;

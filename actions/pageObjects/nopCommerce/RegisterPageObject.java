@@ -57,9 +57,10 @@ public class RegisterPageObject extends BasePage {
 		return isControlDisplayed(driver, RegisterPageUI.SUCCESS_MESSAGE);
 	}
 
-	public void clickToLogOutButton() {
+	public HomePageObject clickToLogOutButton() {
 		waitForElementClickable(driver, RegisterPageUI.LOGOUT_BUTTON);
 		clickToElement(driver, RegisterPageUI.LOGOUT_BUTTON);
+		return PageGeneratorManager.getHomePage(driver);
 
 	}
 

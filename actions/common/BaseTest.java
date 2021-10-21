@@ -1,6 +1,7 @@
 package common;
 
 import java.io.File;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
@@ -11,7 +12,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 public class BaseTest {
 	private WebDriver driver;
 	private String projectPath = System.getProperty("user.dir");
-
+	String emailLogin;
+	
 	private enum BROWSER {
 		CHROME, FIREFOX, IE, EDGE;
 	}
@@ -34,6 +36,7 @@ public class BaseTest {
 		}
 
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driver.manage().window().maximize();
 		return driver;
 
 	}
@@ -57,6 +60,7 @@ public class BaseTest {
 
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.get(appURL);
+		driver.manage().window().maximize();
 		return driver;
 
 	}
@@ -66,5 +70,18 @@ public class BaseTest {
 		return separator + folderName + separator;
 
 	}
+	
+	public int RandomInt() {
+		Random random = new Random();
+		return random.nextInt(9999);
+	}
+	
+	public String RandomEmail() {
+		Random random = new Random();
+		return "darken" + random.nextInt(9999) + "@gmail.com";
+	}
+	
+	
+	
 
 }

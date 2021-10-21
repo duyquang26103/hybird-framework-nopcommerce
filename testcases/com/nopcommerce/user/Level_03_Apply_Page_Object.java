@@ -80,7 +80,7 @@ public class Level_03_Apply_Page_Object {
 		
 		loginPage.inputPasswordTextBox(password);
 		
-		loginPage.clickToLogInButton();
+		loginPage.clickToLoginButton();
 		
 		homePage = new HomePageObject(driver);
 		
