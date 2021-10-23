@@ -34,5 +34,23 @@ public class HomePageObject extends BasePage {
 		clickToElement(driver, HomePageUI.MY_ACCOUNT_BUTTON);
 		return PageGeneratorManager.getMyAccountPage(driver);
 	}
+
+	public ProductPageObject clickToFirstProduct() {
+		waitForElementClickable(driver, HomePageUI.FIRST_PRODUCT_LINK);
+		clickToElement(driver, HomePageUI.FIRST_PRODUCT_LINK);
+		return PageGeneratorManager.getProductPage(driver);
+	}
+
+	public void moveToComputerLink() {
+		waitForElementVisible(driver, HomePageUI.COMPUTERS_LINK);
+		moveToElement(driver, HomePageUI.COMPUTERS_LINK);
+		
+	}
+
+	public ComputersPageObject clickToNoteBookLink() {
+		waitForElementClickable(driver, HomePageUI.NOTEBOOK_LINK);
+		clickToElement(driver, HomePageUI.NOTEBOOK_LINK);
+		return PageGeneratorManager.getComputerPage(driver);
+	}
 	
 }

@@ -18,14 +18,13 @@ public class Level_08_Register_Login_Dynamic_Locator extends BaseTest {
 	WebDriver driver;
 	String email, password;
 
-	@Parameters({"browser","url"})
+	@Parameters({ "browser", "url" })
 	@BeforeClass
 	public void beforeClass(String browserName, String appUrl) {
 
 		driver = getDriverBrowsers(browserName, appUrl);
 		homePage = PageGeneratorManager.getHomePage(driver);
-		
-		
+
 		email = RandomEmail();
 		password = "123123";
 	}
@@ -53,8 +52,6 @@ public class Level_08_Register_Login_Dynamic_Locator extends BaseTest {
 
 		homePage = registerPage.clickToLogOutButton();
 
-	
-
 	}
 
 	@Test
@@ -67,25 +64,21 @@ public class Level_08_Register_Login_Dynamic_Locator extends BaseTest {
 
 		homePage = loginPage.clickToLoginButton();
 
-		
-
 		Assert.assertTrue(homePage.isHomePageSliderDisplayed());
 
 	}
-	
-	@Test 
+
+	@Test
 	public void TC_03_Dynamic_Locator() {
 		homePage.openFooterPageByName(driver, "My account");
 		myAccountPage = PageGeneratorManager.getMyAccountPage(driver);
-		
+
 	}
 
 	@AfterClass
 	public void afterClass() {
 		driver.quit();
 	}
-
-	
 
 	HomePageObject homePage;
 	LoginPageObject loginPage;

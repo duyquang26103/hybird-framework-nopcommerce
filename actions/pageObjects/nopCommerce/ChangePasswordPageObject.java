@@ -34,11 +34,14 @@ public class ChangePasswordPageObject extends BasePage {
 	}
 
 	public HomePageObject clickToLogoutButton() {
-		sleepInSecond(10);
-		scrollToElement(driver, ChangePasswordPageUI.LOGOUT_BUTTON);
 		waitForElementClickable(driver, ChangePasswordPageUI.LOGOUT_BUTTON);
 		clickToElement(driver, ChangePasswordPageUI.LOGOUT_BUTTON);
 		return PageGeneratorManager.getHomePage(driver);
+	}
+
+	public void clickToChangePasswordSuccessMessage() {
+		waitForElementClickable(driver, ChangePasswordPageUI.CHANGE_PASSWORD_SUCCESS_MESSAGE);
+		clickToElement(driver, ChangePasswordPageUI.CHANGE_PASSWORD_SUCCESS_MESSAGE);
 	}
 
 

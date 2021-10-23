@@ -1,5 +1,7 @@
 package common;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -118,17 +120,17 @@ public class BasePage {
 	private By getXpath(String xpathlocator) {
 		return By.xpath(xpathlocator);
 	}
-	
-	public String getDymamicLocator(String locator, String...params) {
-		return String.format(locator,(Object[]) params);
+
+	public String getDymamicLocator(String locator, String... params) {
+		return String.format(locator, (Object[]) params);
 	}
 
 	public void clickToElement(WebDriver driver, String xpathlocator) {
 		getWebElement(driver, xpathlocator).click();
 	}
-	
-	public void clickToElement(WebDriver driver, String xpathlocator, String...params) {
-		getWebElement(driver, getDymamicLocator(xpathlocator,params)).click();
+
+	public void clickToElement(WebDriver driver, String xpathlocator, String... params) {
+		getWebElement(driver, getDymamicLocator(xpathlocator, params)).click();
 	}
 
 	public void sendKeyToElement(WebDriver driver, String xpathlocator, String textValue) {
@@ -136,8 +138,8 @@ public class BasePage {
 		element.clear();
 		element.sendKeys(textValue);
 	}
-	
-	public void sendKeyToElement(WebDriver driver, String xpathlocator, String textValue, String...params) {
+
+	public void sendKeyToElement(WebDriver driver, String xpathlocator, String textValue, String... params) {
 		xpathlocator = getDymamicLocator(xpathlocator, params);
 		WebElement element = getWebElement(driver, xpathlocator);
 		element.clear();
@@ -147,8 +149,8 @@ public class BasePage {
 	protected String getElementText(WebDriver driver, String xpathlocator) {
 		return getWebElement(driver, xpathlocator).getText();
 	}
-	
-	protected String getElementText(WebDriver driver, String xpathlocator, String...params) {
+
+	protected String getElementText(WebDriver driver, String xpathlocator, String... params) {
 		return getWebElement(driver, getDymamicLocator(xpathlocator, params)).getText();
 	}
 
@@ -156,7 +158,7 @@ public class BasePage {
 		Select select = new Select(getWebElement(driver, xpathlocator));
 		select.selectByValue(textItem);
 	}
-	
+
 	public void selectItemInDefaultDropdownByText(WebDriver driver, String xpathlocator, String textItem) {
 		Select select = new Select(getWebElement(driver, xpathlocator));
 		select.selectByVisibleText(textItem);
@@ -224,9 +226,14 @@ public class BasePage {
 	}
 
 	public boolean isControlDisplayed(WebDriver driver, String xpathlocator) {
-		return getWebElement(driver, xpathlocator).isDisplayed();
+		try {
+			return getWebElement(driver, xpathlocator).isDisplayed();
+		} catch (Exception e) {
+			return false;
+		}
 	}
-	public boolean isControlDisplayed(WebDriver driver, String xpathlocator, String...params) {
+
+	public boolean isControlDisplayed(WebDriver driver, String xpathlocator, String... params) {
 		return getWebElement(driver, getDymamicLocator(xpathlocator, params)).isDisplayed();
 	}
 
@@ -248,9 +255,7 @@ public class BasePage {
 
 	public void moveToElement(WebDriver driver, String xpathlocator) {
 		Actions action = new Actions(driver);
-		;
 		action.moveToElement(getWebElement(driver, xpathlocator)).perform();
-		;
 	}
 
 	public Object executeForBrowser(WebDriver driver, String javaScript) {
@@ -360,10 +365,11 @@ public class BasePage {
 		WebDriverWait explicit = new WebDriverWait(driver, longTimeout);
 		explicit.until(ExpectedConditions.visibilityOfElementLocated(getXpath(xpathlocator)));
 	}
-	
-	public void waitForElementVisible(WebDriver driver, String xpathlocator, String...params) {
+
+	public void waitForElementVisible(WebDriver driver, String xpathlocator, String... params) {
 		WebDriverWait explicit = new WebDriverWait(driver, longTimeout);
-		explicit.until(ExpectedConditions.visibilityOfElementLocated(getXpath(getDymamicLocator(xpathlocator, params))));
+		explicit.until(
+				ExpectedConditions.visibilityOfElementLocated(getXpath(getDymamicLocator(xpathlocator, params))));
 	}
 
 	public void waitForAllsElementVisible(WebDriver driver, String xpathlocator) {
@@ -385,15 +391,78 @@ public class BasePage {
 		WebDriverWait explicit = new WebDriverWait(driver, longTimeout);
 		explicit.until(ExpectedConditions.elementToBeClickable(getXpath(xpathlocator)));
 	}
-	
-	public void waitForElementClickable(WebDriver driver, String xpathlocator, String...params) {
+
+	public void waitForElementClickable(WebDriver driver, String xpathlocator, String... params) {
 		WebDriverWait explicit = new WebDriverWait(driver, longTimeout);
 		explicit.until(ExpectedConditions.elementToBeClickable(getXpath(getDymamicLocator(xpathlocator, params))));
 	}
-	
+
+	public void waitForElementSelected(WebDriver driver, String xpathlocator) {
+		WebDriverWait explicit = new WebDriverWait(driver, longTimeout);
+		explicit.until(ExpectedConditions.elementToBeSelected(getXpath(getDymamicLocator(xpathlocator))));
+	}
+
 	public void openFooterPageByName(WebDriver driver, String pageName) {
 		waitForElementClickable(driver, BasePageUI.FOOTER_LINK, pageName);
-		clickToElement(driver, BasePageUI.FOOTER_LINK,pageName);
+		clickToElement(driver, BasePageUI.FOOTER_LINK, pageName);
+	}
+
+	public List<Integer> addElementToList(WebDriver driver, String listItem) {
+		List<WebElement> AllItems = getWebElements(driver, listItem);
+		List<Integer> list = new ArrayList<Integer>();
+		;
+		for (int i = 0; i < AllItems.size(); i++) {
+			String textItem = AllItems.get(i).getText().trim().replace("$", "").replace(",", "").replace(".", "");
+			int price = Integer.parseInt(textItem);
+			list.add(price);
+		}
+		return list;
+	}
+
+	public boolean checkElementSortLowToHigh(WebDriver driver, String listItem) {
+		List<Integer> list = addElementToList(driver, listItem);
+		Integer[] arr = (Integer[]) list.toArray(new Integer[list.size()]);
+		for (int i = 0; i < arr.length; i++) {
+			if (arr[i] <= arr[i + 1]) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public boolean checkElementSortHighToLow(WebDriver driver, String listItem) {
+		List<Integer> list = addElementToList(driver, listItem);
+		Integer[] arr = (Integer[]) list.toArray(new Integer[list.size()]);
+		for (int i = 0; i < arr.length + 1; i++) {
+			if (arr[i] >= arr[i + 1]) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public boolean checkThreeProductDisplayed(WebDriver driver, String Locator) {
+		List<WebElement> AllItems = getWebElements(driver, Locator);
+		if (AllItems.size() <= 3) {
+			return true;
+		} else
+			return false;
+	}
+
+	public boolean checkSixProductDisplayed(WebDriver driver, String Locator) {
+		List<WebElement> AllItems = getWebElements(driver, Locator);
+		if (AllItems.size() <= 6) {
+			return true;
+		} else
+			return false;
+	}
+
+	public boolean checkNineProductDisplayed(WebDriver driver, String Locator) {
+		List<WebElement> AllItems = getWebElements(driver, Locator);
+		if (AllItems.size() <= 9) {
+			return true;
+		} else
+			return false;
 	}
 
 	private long shortTimeout = 5;

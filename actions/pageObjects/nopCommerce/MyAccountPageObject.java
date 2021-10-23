@@ -102,6 +102,12 @@ public class MyAccountPageObject extends BasePage {
 		return getAttributeValue(driver, MyAccountUI.COMPANY_TEXTBOX, attributeValue);
 	}
 
+	public MyProductReviewPageObject clickToMyProductReviewsLink() {
+		waitForElementClickable(driver, MyAccountUI.MY_PRODUCT_REVIEWS);
+		clickToElement(driver, MyAccountUI.MY_PRODUCT_REVIEWS);
+		return PageGeneratorManager.getMyProductReviewPage(driver);
+	}
+
 
 
 
