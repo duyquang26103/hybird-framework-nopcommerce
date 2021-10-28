@@ -68,14 +68,14 @@ public class SortData_Nopcommerce extends BaseTest {
 	public void TC_06_Advanced_Sub_Categories() {
 		computersPage.selectDisplaySelectBox("6");
 		Assert.assertTrue(computersPage.isDisplay6ProductisDisplayed());
-		Assert.assertFalse(computersPage.isPaginationFieldDisplayed());
+		Assert.assertTrue(computersPage.isPaginationFieldUnDisplayed());
 	}
 
 	@Test
 	public void TC_07_Advanced_Incorrect_Manufacturer() {
 		computersPage.selectDisplaySelectBox("9");
 		Assert.assertTrue(computersPage.isDisplay9ProductisDisplayed());
-		Assert.assertFalse(computersPage.isPaginationFieldDisplayed());
+		Assert.assertTrue(computersPage.isPaginationFieldUnDisplayed());
 	}
 
 	@AfterClass

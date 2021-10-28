@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -226,15 +227,28 @@ public class BasePage {
 	}
 
 	public boolean isControlDisplayed(WebDriver driver, String xpathlocator) {
-		try {
-			return getWebElement(driver, xpathlocator).isDisplayed();
-		} catch (Exception e) {
-			return false;
-		}
+		return getWebElement(driver, xpathlocator).isDisplayed();
 	}
 
 	public boolean isControlDisplayed(WebDriver driver, String xpathlocator, String... params) {
 		return getWebElement(driver, getDymamicLocator(xpathlocator, params)).isDisplayed();
+	}
+
+	public boolean isControlUnDisplayed(WebDriver driver, String xpathlocator) {
+		overrideGlobalTime(driver, shortTimeout);
+		List<WebElement> elements = getWebElements(driver, xpathlocator);
+		overrideGlobalTime(driver, longTimeout);
+		if (elements.size() == 0) {
+			return true;
+		} else if (elements.size() > 0 && !elements.get(0).isDisplayed()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public void overrideGlobalTime(WebDriver driver, long timeout) {
+		driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
 	}
 
 	public boolean isControlSelected(WebDriver driver, String xpathlocator) {
@@ -383,7 +397,7 @@ public class BasePage {
 	}
 
 	public void waitForAllsElementInvisible(WebDriver driver, String xpathlocator) {
-		WebDriverWait explicit = new WebDriverWait(driver, longTimeout);
+		WebDriverWait explicit = new WebDriverWait(driver, shortTimeout);
 		explicit.until(ExpectedConditions.invisibilityOfAllElements(getWebElements(driver, xpathlocator)));
 	}
 
@@ -465,9 +479,9 @@ public class BasePage {
 			return false;
 	}
 
-	private long shortTimeout = 5;
+	private long shortTimeout = GlobalConstants.SHORT_TIME_OUT;
 
-	private long longTimeout = 30;
+	private long longTimeout = GlobalConstants.LONG_TIME_OUT;
 
 	public void sleepInSecond(long timeoutInSecond) {
 		try {

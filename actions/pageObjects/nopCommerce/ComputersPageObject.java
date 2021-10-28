@@ -73,14 +73,14 @@ public class ComputersPageObject extends BasePage {
 	}
 
 	public boolean isDisplay6ProductisDisplayed() {
-		waitForAllsElementVisible(driver, ComputersPageUI.PRODUCT_DISPLAYED);
+		waitForElementVisible(driver, ComputersPageUI.PRODUCT_DISPLAYED);
 		scrollToElement(driver, ComputersPageUI.PRODUCT_DISPLAYED);
 		return checkSixProductDisplayed(driver, ComputersPageUI.PRODUCT_DISPLAYED);
 	}
 
-	public boolean isPaginationFieldDisplayed() {
-		waitForElementInvisible(driver, ComputersPageUI.PAGINATION_FIELD);
-		return isControlDisplayed(driver, ComputersPageUI.PAGINATION_FIELD);
+	public boolean isPaginationFieldUnDisplayed() {
+		sleepInSecond(2);
+		return isControlUnDisplayed(driver, ComputersPageUI.PAGINATION_FIELD);
 	}
 
 	public boolean isDisplay9ProductisDisplayed() {
