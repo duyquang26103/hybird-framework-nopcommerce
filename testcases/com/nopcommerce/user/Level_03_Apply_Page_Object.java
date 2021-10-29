@@ -15,8 +15,8 @@ import org.testng.annotations.Test;
 
 import com.beust.jcommander.Parameter;
 
-import common.BasePage;
-import common.BaseTest;
+import commons.BasePage;
+import commons.BaseTest;
 import pageObjects.nopCommerce.HomePageObject;
 import pageObjects.nopCommerce.LoginPageObject;
 import pageObjects.nopCommerce.RegisterPageObject;

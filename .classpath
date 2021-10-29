@@ -13,5 +13,10 @@
 	<classpathentry kind="src" path="javaTester"/>
 	<classpathentry kind="lib" path="lib/testng-6.14.3.jar"/>
 	<classpathentry kind="lib" path="lib/selenium-server-standalone-3.141.59.jar"/>
+	<classpathentry kind="lib" path="lib.logging/commons-codec-1.11.jar"/>
+	<classpathentry kind="lib" path="lib.logging/commons-io-2.6.jar"/>
+	<classpathentry kind="lib" path="lib.logging/commons-lang3-3.8.1.jar"/>
+	<classpathentry kind="lib" path="lib.logging/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="lib.logging/log4j-1.2.16.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -2,6 +2,9 @@
 <suite name="Nopcomerce">
 	<parameter name="url" value="https://demo.nopcommerce.com/" />
 
+	<listeners>
+	<listener class-name ="commons.MethodListener"/> 
+	</listeners>
 	<test name="run on Chrome">
 		<parameter name="browser" value="Chrome" />
 		<classes>

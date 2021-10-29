@@ -2,7 +2,7 @@ package pageObjects.nopCommerce;
 
 import org.openqa.selenium.WebDriver;
 
-import common.BasePage;
+import commons.BasePage;
 import pageUIs.nopCommerce.ProductPageUI;
 
 public class ProductPageObject extends BasePage {

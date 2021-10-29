@@ -2,7 +2,7 @@ package pageObjects.bankGuru;
 
 import org.openqa.selenium.WebDriver;
 
-import common.BasePage;
+import commons.BasePage;
 import pageUIs.bankGuru.LoginPageUI;
 
 public class LoginPageObject extends BasePage {
