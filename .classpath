@@ -18,5 +18,12 @@
 	<classpathentry kind="lib" path="lib.logging/commons-lang3-3.8.1.jar"/>
 	<classpathentry kind="lib" path="lib.logging/commons-logging-1.2.jar"/>
 	<classpathentry kind="lib" path="lib.logging/log4j-1.2.16.jar"/>
+	<classpathentry kind="lib" path="libExtentV2/bson-3.0.4.jar"/>
+	<classpathentry kind="lib" path="libExtentV2/extentreports-2.41.2.jar"/>
+	<classpathentry kind="lib" path="libExtentV2/freemarker-2.3.23.jar"/>
+	<classpathentry kind="lib" path="libExtentV2/jsoup-1.8.3.jar"/>
+	<classpathentry kind="lib" path="libExtentV2/mongodb-driver-3.0.4.jar"/>
+	<classpathentry kind="lib" path="libExtentV2/mongodb-driver-core-3.0.4.jar"/>
+	<classpathentry kind="lib" path="libExtentV2/sqlite-jdbc-3.8.11.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
