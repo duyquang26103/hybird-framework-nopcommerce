@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -109,7 +110,19 @@ public class BasePage {
 		}
 
 	}
-
+	
+	public Set<Cookie> getAllCookie(WebDriver driver) {
+		Set<Cookie> allCookies = driver.manage().getCookies();
+		return allCookies;
+	}
+	
+	public void setAllCookie(WebDriver driver, Set<Cookie> allCookies) {
+		for (Cookie cookie : allCookies) {
+			driver.manage().addCookie(cookie);
+		}
+		allCookies = driver.manage().getCookies();
+	}
+	
 	private WebElement getWebElement(WebDriver driver, String xpathlocator) {
 		return driver.findElement(getXpath(xpathlocator));
 	}
