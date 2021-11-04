@@ -19,7 +19,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import pageUIs.nopCommerce.BasePageUI;
+import pageUIs.nopCommerce.UserBasePageUI;
 
 public class BasePage {
 
@@ -110,19 +110,19 @@ public class BasePage {
 		}
 
 	}
-	
+
 	public Set<Cookie> getAllCookie(WebDriver driver) {
 		Set<Cookie> allCookies = driver.manage().getCookies();
 		return allCookies;
 	}
-	
+
 	public void setAllCookie(WebDriver driver, Set<Cookie> allCookies) {
 		for (Cookie cookie : allCookies) {
 			driver.manage().addCookie(cookie);
 		}
 		allCookies = driver.manage().getCookies();
 	}
-	
+
 	private WebElement getWebElement(WebDriver driver, String xpathlocator) {
 		return driver.findElement(getXpath(xpathlocator));
 	}
@@ -430,8 +430,23 @@ public class BasePage {
 	}
 
 	public void openFooterPageByName(WebDriver driver, String pageName) {
-		waitForElementClickable(driver, BasePageUI.FOOTER_LINK, pageName);
-		clickToElement(driver, BasePageUI.FOOTER_LINK, pageName);
+		waitForElementClickable(driver, UserBasePageUI.FOOTER_LINK, pageName);
+		clickToElement(driver, UserBasePageUI.FOOTER_LINK, pageName);
+	}
+
+	public void openHeaderPageByName(WebDriver driver, String pageName) {
+		waitForElementVisible(driver, UserBasePageUI.HEADER_LINK, pageName);
+		clickToElement(driver, UserBasePageUI.HEADER_LINK, pageName);
+	}
+
+	public void inputTextBoxByID(WebDriver driver, String value, String idName) {
+		waitForElementVisible(driver, UserBasePageUI.INPUT_TEXTBOX, idName);
+		sendKeyToElement(driver, UserBasePageUI.INPUT_TEXTBOX, value, idName);
+	}
+	
+	public void clickOnButtonByName(WebDriver driver, String buttonName) {
+		waitForElementVisible(driver, UserBasePageUI.BUTTON_LINK, buttonName);
+		clickToElement(driver, UserBasePageUI.BUTTON_LINK, buttonName);
 	}
 
 	public List<Integer> addElementToList(WebDriver driver, String listItem) {
