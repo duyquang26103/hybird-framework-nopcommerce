@@ -41,6 +41,41 @@ public class ProductPageObject extends BasePage {
 		
 	}
 
+	public void selectRAMDropdown(String ramName) {
+		waitForElementClickable(driver, ProductPageUI.RAM_DROPDOWN);
+		selectItemInDefaultDropdownByText(driver, ProductPageUI.RAM_DROPDOWN, ramName);
+	}
+
+	public void selectHDDButton() {
+		waitForElementClickable(driver, ProductPageUI.HDD_RADIO);
+		clickToElement(driver, ProductPageUI.HDD_RADIO);
+	}
+
+	public boolean isAddWishlistSuccessMessageDisplayed() {
+		waitForAllsElementVisible(driver,ProductPageUI.ADD_WISHLIST_MESSAGE);
+		return isControlDisplayed(driver, ProductPageUI.ADD_WISHLIST_MESSAGE);
+	}
+
+	public String getNameProductText() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String getPriceProductText() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void clickToAddComparelistButton() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public boolean isAddCompareListSuccessMessageDisplayed() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 
 
 	

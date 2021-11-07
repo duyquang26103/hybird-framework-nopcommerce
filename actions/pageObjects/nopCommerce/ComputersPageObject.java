@@ -89,6 +89,11 @@ public class ComputersPageObject extends BasePage {
 		return checkNineProductDisplayed(driver, ComputersPageUI.PRODUCT_DISPLAYED);
 	}
 
+	public void clickToProductByIndex(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 	
 }

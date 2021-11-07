@@ -9,6 +9,8 @@ public class HomePageUI {
 	
 	public static final String COMPUTERS_LINK = "//ul[@class='top-menu notmobile']//a[text()='Computers ']";
 	public static final String NOTEBOOK_LINK = "//ul[@class='top-menu notmobile']//a[text()='Notebooks ']";
+	
+	public static final String NOPCOMMERCE_IMG = "//img[@alt='nopCommerce demo store']";
 
 	
 }

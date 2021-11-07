@@ -19,6 +19,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import pageUIs.nopCommerce.HomePageUI;
 import pageUIs.nopCommerce.UserBasePageUI;
 
 public class BasePage {
@@ -506,6 +507,11 @@ public class BasePage {
 		} else
 			return false;
 	}
+	
+	public void clickToImgNopcommerce(WebDriver driver) {
+		waitForElementClickable(driver, UserBasePageUI.NOPCOMMERCE_IMG);
+		clickToElement(driver, UserBasePageUI.NOPCOMMERCE_IMG);
+	}
 
 	private long shortTimeout = GlobalConstants.SHORT_TIME_OUT;
 
@@ -519,5 +525,7 @@ public class BasePage {
 			e.printStackTrace();
 		}
 	}
+	
+	
 
 }

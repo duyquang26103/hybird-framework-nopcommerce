@@ -13,6 +13,9 @@ public class PageGeneratorManager {
 	private static MyProductReviewPageObject myProductReviewPage;
 	private static SearchPageObject searchPage;
 	private static ComputersPageObject computersPage;
+	private static WishlistPageObject wishlistPage;
+	private static CompareListPageObject compareListPage;
+	private static RecentlyReviewPageObject recentlyReviewPage;
 		
 	private PageGeneratorManager() {
 		
@@ -93,6 +96,27 @@ public class PageGeneratorManager {
 			computersPage = new ComputersPageObject(driver);
 		}
 		return computersPage;
+	}
+
+	public static WishlistPageObject getWishlistPage(WebDriver driver) {
+		if(wishlistPage == null) {
+			wishlistPage = new WishlistPageObject(driver);
+		}
+		return wishlistPage;
+	}
+
+	public static CompareListPageObject getComPareListPage(WebDriver driver) {
+		if(compareListPage == null) {
+			compareListPage = new CompareListPageObject(driver);
+		}
+		return compareListPage;
+	}
+
+	public static RecentlyReviewPageObject recentlyReviewPage(WebDriver driver) {
+		if(recentlyReviewPage == null) {
+			recentlyReviewPage = new RecentlyReviewPageObject(driver);
+		}
+		return recentlyReviewPage;
 	}
 
 }

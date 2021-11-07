@@ -36,6 +36,7 @@ public class HomePageObject extends BasePage {
 	}
 
 	public ProductPageObject clickToFirstProduct() {
+		scrollToElement(driver, HomePageUI.FIRST_PRODUCT_LINK);
 		waitForElementClickable(driver, HomePageUI.FIRST_PRODUCT_LINK);
 		clickToElement(driver, HomePageUI.FIRST_PRODUCT_LINK);
 		return PageGeneratorManager.getProductPage(driver);
@@ -51,6 +52,16 @@ public class HomePageObject extends BasePage {
 		waitForElementClickable(driver, HomePageUI.NOTEBOOK_LINK);
 		clickToElement(driver, HomePageUI.NOTEBOOK_LINK);
 		return PageGeneratorManager.getComputerPage(driver);
+	}
+
+	public void clickToImgNopcommerce() {
+		waitForElementClickable(driver, HomePageUI.NOPCOMMERCE_IMG);
+		clickToElement(driver, HomePageUI.NOPCOMMERCE_IMG);
+	}
+
+	public ProductPageObject clickToSecondProduct() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }
