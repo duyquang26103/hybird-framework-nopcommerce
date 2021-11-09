@@ -3,6 +3,8 @@ package pageObjects.nopCommerce;
 import org.openqa.selenium.WebDriver;
 
 import commons.BasePage;
+import pageUIs.nopCommerce.ProductPageUI;
+import pageUIs.nopCommerce.WishlistPageUI;
 
 public class WishlistPageObject extends BasePage {
 	private WebDriver driver;
@@ -12,52 +14,49 @@ public class WishlistPageObject extends BasePage {
 	}
 
 	public boolean isPrductAddSuccessDisplayed() {
-		// TODO Auto-generated method stub
-		return false;
+		waitForElementVisible(driver, WishlistPageUI.NAME_PRODUCT_DISPLAYED);
+		return isControlDisplayed(driver, WishlistPageUI.NAME_PRODUCT_DISPLAYED);
 	}
 
 	public void clickToURLSharing() {
-		// TODO Auto-generated method stub
-		
+		waitForElementClickable(driver, WishlistPageUI.SHARING_URL_LINK);
+		clickToElement(driver, WishlistPageUI.SHARING_URL_LINK);
 	}
 
 	public String getProductNameInUrl() {
-		// TODO Auto-generated method stub
-		return null;
+		waitForAllsElementVisible(driver, WishlistPageUI.WISHLIST_OF_USER_TEXT);
+		return getElementText(driver, WishlistPageUI.WISHLIST_OF_USER_TEXT);
 	}
 
 	public void clickToAddToCartCheckBox() {
-		// TODO Auto-generated method stub
+		waitForElementClickable(driver, WishlistPageUI.ADD_TO_CART_CHECKBOX);
+		clickToElement(driver, WishlistPageUI.ADD_TO_CART_CHECKBOX);
 		
 	}
 
 	public void clickToAddToCartButton() {
-		// TODO Auto-generated method stub
-		
+		waitForElementClickable(driver, WishlistPageUI.ADD_TO_CART_BUTTON);
+		clickToElement(driver, WishlistPageUI.ADD_TO_CART_BUTTON);
 	}
 
 	public String getWishlistEmpty() {
-		// TODO Auto-generated method stub
-		return null;
+		waitForAllsElementVisible(driver, WishlistPageUI.QTY_OF_WISHLIST);
+		return getElementText(driver, WishlistPageUI.QTY_OF_WISHLIST);
 	}
 
 	public String getShoppingCartisAdded() {
-		// TODO Auto-generated method stub
-		return null;
+		waitForAllsElementVisible(driver, WishlistPageUI.QTY_OF_SHOPPING_CART);
+		return getElementText(driver, WishlistPageUI.QTY_OF_SHOPPING_CART);
 	}
 
 	public void clickOnRemoveButton() {
-		// TODO Auto-generated method stub
+		waitForElementClickable(driver, WishlistPageUI.REMOVE_BUTTON);
+		clickToElement(driver, WishlistPageUI.REMOVE_BUTTON);
 		
 	}
 
 	public String getEmptyWishlistMessage() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public String getEmptyComparelistMessage() {
-		// TODO Auto-generated method stub
-		return null;
+		waitForAllsElementVisible(driver, WishlistPageUI.EMPTY_WISHLIST_LABEL);
+		return getElementText(driver, WishlistPageUI.EMPTY_WISHLIST_LABEL);
 	}
 }

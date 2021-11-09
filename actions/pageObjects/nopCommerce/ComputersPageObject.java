@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import commons.BasePage;
 import pageUIs.nopCommerce.ComputersPageUI;
 import pageUIs.nopCommerce.HomePageUI;
+import pageUIs.nopCommerce.ProductPageUI;
 
 public class ComputersPageObject extends BasePage {
 	private WebDriver driver;
@@ -89,11 +90,12 @@ public class ComputersPageObject extends BasePage {
 		return checkNineProductDisplayed(driver, ComputersPageUI.PRODUCT_DISPLAYED);
 	}
 
-	public void clickToProductByIndex(String string) {
-		// TODO Auto-generated method stub
+	public ProductPageObject clickToProductByIndex(String productIndex) {
+		scrollToElement(driver, ComputersPageUI.PRODUCT_NAME_BY_INDEX, productIndex);
+		waitForElementClickable(driver,ComputersPageUI.PRODUCT_NAME_BY_INDEX, productIndex);
+		clickToElement(driver, ComputersPageUI.PRODUCT_NAME_BY_INDEX, productIndex);
+		return PageGeneratorManager.getProductPage(driver);
 		
 	}
 
-	
-	
 }

@@ -19,6 +19,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import pageObjects.nopCommerce.PageGeneratorManager;
 import pageUIs.nopCommerce.HomePageUI;
 import pageUIs.nopCommerce.UserBasePageUI;
 
@@ -162,7 +163,7 @@ public class BasePage {
 	}
 
 	protected String getElementText(WebDriver driver, String xpathlocator) {
-		return getWebElement(driver, xpathlocator).getText();
+		return getWebElement(driver, xpathlocator).getText().trim();
 	}
 
 	protected String getElementText(WebDriver driver, String xpathlocator, String... params) {
@@ -332,6 +333,11 @@ public class BasePage {
 	public void scrollToElement(WebDriver driver, String xpathlocator) {
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
 		jsExecutor.executeScript("arguments[0].scrollIntoView(true);", getWebElement(driver, xpathlocator));
+	}
+	
+	public void scrollToElement(WebDriver driver, String xpathlocator, String...params) {
+		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+		jsExecutor.executeScript("arguments[0].scrollIntoView(true);", getWebElement(driver, getDymamicLocator(xpathlocator, params)));
 	}
 
 	public void sendkeyToElementByJS(WebDriver driver, String xpathlocator, String value) {
@@ -509,6 +515,7 @@ public class BasePage {
 	}
 	
 	public void clickToImgNopcommerce(WebDriver driver) {
+		sleepInSecond(1);
 		waitForElementClickable(driver, UserBasePageUI.NOPCOMMERCE_IMG);
 		clickToElement(driver, UserBasePageUI.NOPCOMMERCE_IMG);
 	}

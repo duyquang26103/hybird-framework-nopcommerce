@@ -13,4 +13,5 @@ public class ComputersPageUI {
 	public static final String PREVIOUS_PAGINATION = "//li[@class='previous-page']/a[text()='Previous']";
 	public static final String PAGINATION_FIELD = "//div[@class='pager']";
 	public static final String PAGE_TWO_PAGINATION = "//li[@class='individual-page']";
+	public static final String PRODUCT_NAME_BY_INDEX = "//div[@class='item-grid']/div[%s]//div[@class='picture']/a";
 }

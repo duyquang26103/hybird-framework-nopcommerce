@@ -3,6 +3,7 @@ package pageObjects.nopCommerce;
 import org.openqa.selenium.WebDriver;
 
 import commons.BasePage;
+import pageUIs.nopCommerce.CompareListPageUI;
 
 public class CompareListPageObject extends BasePage{
 	private WebDriver driver;
@@ -11,24 +12,26 @@ public class CompareListPageObject extends BasePage{
 		this.driver = driver;
 	}
 
-	public boolean getNameOfPDFirst() {
-		// TODO Auto-generated method stub
-		return false;
+	public String getNameOfProduct(String className, String productIndex) {
+		int productIndexInt = Integer.parseInt(productIndex) + 1;
+		waitForElementVisible(driver, CompareListPageUI.NAME_OF_PRODUCT,className, String.valueOf(productIndexInt));
+		return getElementText(driver, CompareListPageUI.NAME_OF_PRODUCT,className, String.valueOf(productIndexInt));
 	}
-
-	public boolean getNameOfPDSecond() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	public boolean getPriceOfPDSecond() {
-		// TODO Auto-generated method stub
-		return false;
+	
+	public String getPriceOfProduct(String className, String productIndex) {
+		int productIndexInt = Integer.parseInt(productIndex) + 1;
+		waitForElementVisible(driver, CompareListPageUI.PRICE_OF_PRODUCT,className, String.valueOf(productIndexInt));
+		return getElementText(driver, CompareListPageUI.PRICE_OF_PRODUCT,className, String.valueOf(productIndexInt));
 	}
 
 	public void clickOnClearListLink() {
-		// TODO Auto-generated method stub
-		
+		waitForElementClickable(driver, CompareListPageUI.CLEAR_LIST_LINK);
+		clickToElement(driver, CompareListPageUI.CLEAR_LIST_LINK);
+	}
+
+	public Object getEmptyComparelistMessage() {
+		waitForAllsElementVisible(driver, CompareListPageUI.EMPTY_MESSAGE);
+		return getElementText(driver, CompareListPageUI.EMPTY_MESSAGE);
 	}
 	
 }

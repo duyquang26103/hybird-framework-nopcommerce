@@ -39,15 +39,15 @@ public class MyAccount_Nopcommerce extends BaseTest {
 		password_01 = "123123";
 		password_02 = "123456";
 		
-
 		loginPage = homePage.clickToLoginButton();
-
+		
 		loginPage.setAllCookie(driver, Common_01_Login_Data.loginPageCookie);
 		sleepInSecond(3);
 		loginPage.refreshCurrentPage(driver);
 
 		homePage = PageGeneratorManager.getHomePage(driver);
-//		verifyFalse(homePage.isHomePageSliderDisplayed());
+		homePage.clickToImgNopcommerce();
+		verifyFalse(homePage.isHomePageSliderDisplayed());
 	}
 
 	@Test
@@ -103,7 +103,6 @@ public class MyAccount_Nopcommerce extends BaseTest {
 
 		ExtentTestManager.getTest().log(LogStatus.INFO, "My Account 01_Custom_Info - Step 11: Verify Company Name equals: "+  "Automation FC");
 		verifyEquals(myAccountPage.getCompanyTextbox("Value"), "Automation FC");
-
 		ExtentTestManager.endTest();
 	}
 
@@ -184,37 +183,37 @@ public class MyAccount_Nopcommerce extends BaseTest {
 	@Test
 	public void TC_03_Change_Password(Method method) {
 		ExtentTestManager.startTest(method.getName(), "TC_03_Change_Password");
-		ExtentTestManager.getTest().log(LogStatus.INFO, "My Account TC_03_Change_Password - Step 01: Click to 'My Account' Link ");
+		ExtentTestManager.getTest().log(LogStatus.INFO, "My Account TC_03_Change_Password - Step 01: Click to 'Change Password' Link ");
 		changePasswordPage = addressesPage.clickToChangePasswordLink();
 
-		ExtentTestManager.getTest().log(LogStatus.INFO, "My Account TC_03_Change_Password - Step 02: Click to 'My Account' Link ");
+		ExtentTestManager.getTest().log(LogStatus.INFO, "My Account TC_03_Change_Password - Step 02: Input old password:" + password_01);
 		changePasswordPage.inputOldPasswordTextBox(password_01);
 		
-		ExtentTestManager.getTest().log(LogStatus.INFO, "My Account TC_03_Change_Password - Step 03: Click to 'My Account' Link ");
+		ExtentTestManager.getTest().log(LogStatus.INFO, "My Account TC_03_Change_Password - Step 03: Input new password:" + password_02);
 		changePasswordPage.inputNewPasswordTextBox(password_02);
 		
-		ExtentTestManager.getTest().log(LogStatus.INFO, "My Account TC_03_Change_Password - Step 04: Click to 'My Account' Link ");
+		ExtentTestManager.getTest().log(LogStatus.INFO, "My Account TC_03_Change_Password - Step 04: Input confirm password:" + password_02);
 		changePasswordPage.inputConfirmPasswordTextBox(password_02);
 		
-		ExtentTestManager.getTest().log(LogStatus.INFO, "My Account TC_03_Change_Password - Step 05: Click to 'My Account' Link ");
+		ExtentTestManager.getTest().log(LogStatus.INFO, "My Account TC_03_Change_Password - Step 05: Click to 'Change Password' button");
 		changePasswordPage.clickToChangePasswordButton();
 		
-		ExtentTestManager.getTest().log(LogStatus.INFO, "My Account TC_03_Change_Password - Step 06: Click to 'My Account' Link ");
+		ExtentTestManager.getTest().log(LogStatus.INFO, "My Account TC_03_Change_Password - Step 06: Click to 'Close' the success message");
 		changePasswordPage.clickToCloseChangePasswordSuccessMessage();
 		
-		ExtentTestManager.getTest().log(LogStatus.INFO, "My Account TC_03_Change_Password - Step 07: Click to 'My Account' Link ");
+		ExtentTestManager.getTest().log(LogStatus.INFO, "My Account TC_03_Change_Password - Step 07: Click to 'Logout' button");
 		homePage = changePasswordPage.clickToLogoutButton();
 
-		ExtentTestManager.getTest().log(LogStatus.INFO, "My Account TC_03_Change_Password - Step 08: Click to 'My Account' Link ");
+		ExtentTestManager.getTest().log(LogStatus.INFO, "My Account TC_03_Change_Password - Step 08: Click to 'Login' button");
 		loginPage = homePage.clickToLoginButton();
 
-		ExtentTestManager.getTest().log(LogStatus.INFO, "My Account TC_03_Change_Password - Step 09: Click to 'My Account' Link ");
+		ExtentTestManager.getTest().log(LogStatus.INFO, "My Account TC_03_Change_Password - Step 09: Input new email:" + emailUpdated + " & old password: " + password_01);
 		loginPage.loginToSystem(emailUpdated, password_01);
 		
 		ExtentTestManager.getTest().log(LogStatus.INFO, "My Account TC_03_Change_Password - Step 10: Verify 'message wrog password' equal: " + "The credentials provided are incorrect");
 		verifyEquals(loginPage.getWrongPasswordMessage(), "The credentials provided are incorrect");
 		
-		ExtentTestManager.getTest().log(LogStatus.INFO, "My Account TC_03_Change_Password - Step 11: Login to the system with email:" + emailUpdated + "& password" + password_02);
+		ExtentTestManager.getTest().log(LogStatus.INFO, "My Account TC_03_Change_Password - Step 11: Login to the system with email:" + emailUpdated + "& new password" + password_02);
 		homePage = loginPage.loginToSystem(emailUpdated, password_02);
 		
 		Assert.assertTrue(homePage.isHomePageSliderDisplayed());
@@ -224,25 +223,32 @@ public class MyAccount_Nopcommerce extends BaseTest {
 	@Test
 	public void TC_04_Preview_Product(Method method) {
 		ExtentTestManager.startTest(method.getName(), "TC_01_Custom_Info");
-		ExtentTestManager.getTest().log(LogStatus.INFO, "My Account 01_Custom_Info - Step 01: Click to 'My Account' Link ");
+		ExtentTestManager.getTest().log(LogStatus.INFO, "My Account 04_Preview_Product - Step 01: Click to the first product");
 		productPage = homePage.clickToFirstProduct();
 		
+		ExtentTestManager.getTest().log(LogStatus.INFO, "My Account 04_Preview_Product - Step 02: Click to 'Add Your Review' button");
 		productPage.clickToAddYourReviewButton();
 		
+		ExtentTestManager.getTest().log(LogStatus.INFO, "My Account 04_Preview_Product - Step 03: Input to review title: 'Good Build PC'");
 		productPage.inputReviewTitleTextBox("Good Build PC");
 		
+		ExtentTestManager.getTest().log(LogStatus.INFO, "My Account 04_Preview_Product - Step 04: Input to review text'This is the best choice for future'");
 		productPage.inputReviewTextTextArea("This is the best choice for future");
 		
+		ExtentTestManager.getTest().log(LogStatus.INFO, "My Account 04_Preview_Product - Step 05: Click to 'Rating' radio button");
 		productPage.clickToRatingRadioButton();
 		
+		ExtentTestManager.getTest().log(LogStatus.INFO, "My Account 04_Preview_Product - Step 06: Click to 'Submit Review' button");
 		productPage.clickToSubmitReviewButton();
 
+		ExtentTestManager.getTest().log(LogStatus.INFO, "My Account 04_Preview_Product - Step 07: Open 'My Account' link at footer");
 		productPage.openFooterPageByName(driver, "My account");
-		
 		myAccountPage = PageGeneratorManager.getMyAccountPage(driver);
 
+		ExtentTestManager.getTest().log(LogStatus.INFO, "My Account 04_Preview_Product - Step 08: Click to 'My Product Reviews' link");
 		myProductReviewPage = myAccountPage.clickToMyProductReviewsLink();
 		
+		ExtentTestManager.getTest().log(LogStatus.INFO, "My Account 04_Preview_Product - Step 09: Verify review is Displayed");
 		verifyTrue(myProductReviewPage.isProductISReviewedDisplayed());
 		ExtentTestManager.endTest();
 

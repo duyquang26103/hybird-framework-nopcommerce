@@ -60,8 +60,10 @@ public class HomePageObject extends BasePage {
 	}
 
 	public ProductPageObject clickToSecondProduct() {
-		// TODO Auto-generated method stub
-		return null;
+		scrollToElement(driver, HomePageUI.SECOND_PRODUCT_LINK);
+		waitForElementClickable(driver, HomePageUI.SECOND_PRODUCT_LINK);
+		clickToElement(driver, HomePageUI.SECOND_PRODUCT_LINK);
+		return PageGeneratorManager.getProductPage(driver);
 	}
 	
 }

@@ -57,23 +57,29 @@ public class ProductPageObject extends BasePage {
 	}
 
 	public String getNameProductText() {
-		// TODO Auto-generated method stub
-		return null;
+		waitForElementVisible(driver,ProductPageUI.NAME_OF_PRODUCT);
+		return getElementText(driver,ProductPageUI.NAME_OF_PRODUCT);
 	}
 
 	public String getPriceProductText() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public void clickToAddComparelistButton() {
-		// TODO Auto-generated method stub
-		
+		scrollToElement(driver, ProductPageUI.PRICE_OF_PRODUCT);
+		waitForElementVisible(driver,ProductPageUI.PRICE_OF_PRODUCT);
+		return getElementText(driver,ProductPageUI.PRICE_OF_PRODUCT);
 	}
 
 	public boolean isAddCompareListSuccessMessageDisplayed() {
-		// TODO Auto-generated method stub
-		return false;
+		waitForElementVisible(driver,ProductPageUI.ADD_COMPARE_MESSAGE);
+		return isControlDisplayed(driver, ProductPageUI.ADD_COMPARE_MESSAGE);
+	}
+
+	public void clickOnCloseSuccessMessage() {
+		waitForElementClickable(driver, ProductPageUI.CLOSE_SUCCESS_MESSAGE);
+		clickToElement(driver, ProductPageUI.CLOSE_SUCCESS_MESSAGE);
+	}
+
+	public boolean isProductNameisDisplayed() {
+		waitForElementVisible(driver,ProductPageUI.NAME_OF_PRODUCT);
+		return isControlDisplayed(driver,ProductPageUI.NAME_OF_PRODUCT);
 	}
 
 
