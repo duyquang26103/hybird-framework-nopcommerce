@@ -19,9 +19,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import pageObjects.nopCommerce.PageGeneratorManager;
-import pageUIs.nopCommerce.HomePageUI;
-import pageUIs.nopCommerce.UserBasePageUI;
+import pageObjects.hrm.PageGeneratorManager;
+import pageUIs.hrm.UserBasePageUI;
 
 public class BasePage {
 
@@ -227,6 +226,10 @@ public class BasePage {
 		return getWebElements(driver, xpathlocator).size();
 	}
 
+	public int getElementSize(WebDriver driver, String xpathlocator, String... params) {
+		return getWebElements(driver, getDymamicLocator(xpathlocator, params)).size();
+	}
+
 	public void checkTheCheckboxOrRadio(WebDriver driver, String xpathlocator) {
 		WebElement element = getWebElement(driver, xpathlocator);
 		if (!element.isEnabled()) {
@@ -334,10 +337,11 @@ public class BasePage {
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
 		jsExecutor.executeScript("arguments[0].scrollIntoView(true);", getWebElement(driver, xpathlocator));
 	}
-	
-	public void scrollToElement(WebDriver driver, String xpathlocator, String...params) {
+
+	public void scrollToElement(WebDriver driver, String xpathlocator, String... params) {
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
-		jsExecutor.executeScript("arguments[0].scrollIntoView(true);", getWebElement(driver, getDymamicLocator(xpathlocator, params)));
+		jsExecutor.executeScript("arguments[0].scrollIntoView(true);",
+				getWebElement(driver, getDymamicLocator(xpathlocator, params)));
 	}
 
 	public void sendkeyToElementByJS(WebDriver driver, String xpathlocator, String value) {
@@ -350,6 +354,19 @@ public class BasePage {
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
 		jsExecutor.executeScript("arguments[0].removeAttribute('" + attributeRemove + "');",
 				getWebElement(driver, xpathlocator));
+	}
+
+	public boolean isJQueryAjaxLoadedSuccess(WebDriver driver) {
+		WebDriverWait explicitWait = new WebDriverWait(driver, longTimeout);
+		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+		ExpectedCondition<Boolean> jQueryLoad = new ExpectedCondition<Boolean>() {
+			@Override
+			public Boolean apply(WebDriver driver) {
+				return (Boolean) jsExecutor.executeScript("return (window.jQuery != null) && (jQuery.active === 0);");
+			}
+		};
+
+		return explicitWait.until(jQueryLoad);
 	}
 
 	public boolean areJQueryAndJSLoadedSuccess(WebDriver driver) {
@@ -436,24 +453,39 @@ public class BasePage {
 		explicit.until(ExpectedConditions.elementToBeSelected(getXpath(getDymamicLocator(xpathlocator))));
 	}
 
-	public void openFooterPageByName(WebDriver driver, String pageName) {
-		waitForElementClickable(driver, UserBasePageUI.FOOTER_LINK, pageName);
-		clickToElement(driver, UserBasePageUI.FOOTER_LINK, pageName);
-	}
-
-	public void openHeaderPageByName(WebDriver driver, String pageName) {
-		waitForElementVisible(driver, UserBasePageUI.HEADER_LINK, pageName);
-		clickToElement(driver, UserBasePageUI.HEADER_LINK, pageName);
-	}
-
 	public void inputTextBoxByID(WebDriver driver, String value, String idName) {
 		waitForElementVisible(driver, UserBasePageUI.INPUT_TEXTBOX, idName);
 		sendKeyToElement(driver, UserBasePageUI.INPUT_TEXTBOX, value, idName);
 	}
-	
-	public void clickOnButtonByName(WebDriver driver, String buttonName) {
-		waitForElementVisible(driver, UserBasePageUI.BUTTON_LINK, buttonName);
-		clickToElement(driver, UserBasePageUI.BUTTON_LINK, buttonName);
+
+	public void clickOnButtonByID(WebDriver driver, String buttonName) {
+		waitForElementClickable(driver, UserBasePageUI.INPUT_BUTTON, buttonName);
+		clickToElement(driver, UserBasePageUI.INPUT_BUTTON, buttonName);
+	}
+
+	public void clickOnCheckBoxByID(WebDriver driver, String checkboxID) {
+		waitForElementClickable(driver, UserBasePageUI.INPUT_CHECKBOX, checkboxID);
+		clickToElement(driver, UserBasePageUI.INPUT_CHECKBOX, checkboxID);
+	}
+
+	public void selectDropdownByName(WebDriver driver, String dopDownID, String textName) {
+		waitForElementClickable(driver, UserBasePageUI.SELECT_BY_ID, dopDownID, textName);
+		clickToElement(driver, UserBasePageUI.SELECT_BY_ID, dopDownID, textName);
+	}
+
+	public void openMenuHeaderAndSubMenuByName(WebDriver driver, String menuName, String subMenuName) {
+		waitForElementClickable(driver, UserBasePageUI.MENU_HEADER, menuName);
+		clickToElement(driver, UserBasePageUI.MENU_HEADER, menuName);
+
+		waitForElementClickable(driver, UserBasePageUI.SUB_MENU_HEADER, subMenuName);
+		clickToElement(driver, UserBasePageUI.SUB_MENU_HEADER, subMenuName);
+	}
+
+	public String getValueTableByIDByRowIndexAndColumnName(WebDriver driver, String tableID, String rowIndex,String coulumnName) {
+		waitForElementVisible(driver, UserBasePageUI.TABLE_HEADER_BY_ID_AND_NAME, tableID, coulumnName);
+		int coulumnIndex = getElementSize(driver, UserBasePageUI.TABLE_HEADER_BY_ID_AND_NAME, tableID, coulumnName) + 1;
+		waitForElementVisible(driver, UserBasePageUI.TABLE_ROW_BY_ID_BY_COLUMN_INDEX_AND_BY_ROW_INDEX, tableID,rowIndex, String.valueOf(coulumnIndex));
+		return getElementText(driver, UserBasePageUI.TABLE_ROW_BY_ID_BY_COLUMN_INDEX_AND_BY_ROW_INDEX, tableID,rowIndex, String.valueOf(coulumnIndex));
 	}
 
 	public List<Integer> addElementToList(WebDriver driver, String listItem) {
@@ -490,36 +522,6 @@ public class BasePage {
 		return false;
 	}
 
-	public boolean checkThreeProductDisplayed(WebDriver driver, String Locator) {
-		List<WebElement> AllItems = getWebElements(driver, Locator);
-		if (AllItems.size() <= 3) {
-			return true;
-		} else
-			return false;
-	}
-
-	public boolean checkSixProductDisplayed(WebDriver driver, String Locator) {
-		List<WebElement> AllItems = getWebElements(driver, Locator);
-		if (AllItems.size() <= 6) {
-			return true;
-		} else
-			return false;
-	}
-
-	public boolean checkNineProductDisplayed(WebDriver driver, String Locator) {
-		List<WebElement> AllItems = getWebElements(driver, Locator);
-		if (AllItems.size() <= 9) {
-			return true;
-		} else
-			return false;
-	}
-	
-	public void clickToImgNopcommerce(WebDriver driver) {
-		sleepInSecond(1);
-		waitForElementClickable(driver, UserBasePageUI.NOPCOMMERCE_IMG);
-		clickToElement(driver, UserBasePageUI.NOPCOMMERCE_IMG);
-	}
-
 	private long shortTimeout = GlobalConstants.SHORT_TIME_OUT;
 
 	private long longTimeout = GlobalConstants.LONG_TIME_OUT;
@@ -532,7 +534,5 @@ public class BasePage {
 			e.printStackTrace();
 		}
 	}
-	
-	
 
 }
