@@ -13,11 +13,13 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.Reporter;
+import utilities.DataUtil;
 
 public class BaseTest {
 	private WebDriver driver;
 	private String projectPath = System.getProperty("user.dir");
-	String emailLogin;
+	public static String correctEmail;
+	DataUtil fakerData;
 	protected final Log log;
 	
 	protected BaseTest() {
@@ -80,7 +82,7 @@ public class BaseTest {
 		return separator + folderName + separator;
 
 	}
-	
+
 	public int RandomInt() {
 		Random random = new Random();
 		return random.nextInt(9999);
