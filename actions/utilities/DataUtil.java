@@ -29,6 +29,7 @@ public class DataUtil {
 		return faker.internet().emailAddress();
 	}
 	
+
 	public String getStateAddress() {
 		return faker.address().country();
 	}
@@ -60,5 +61,10 @@ public class DataUtil {
 	public String getRelationship() {
 		return faker.relationships().any();
 	}
+
+	public String getPassword() {
+		return faker.internet().password();
+	}
+
 
 }

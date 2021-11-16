@@ -124,11 +124,11 @@ public class BasePage {
 		allCookies = driver.manage().getCookies();
 	}
 
-	private WebElement getWebElement(WebDriver driver, String xpathlocator) {
+	protected WebElement getWebElement(WebDriver driver, String xpathlocator) {
 		return driver.findElement(getXpath(xpathlocator));
 	}
 
-	private List<WebElement> getWebElements(WebDriver driver, String xpathlocator) {
+	protected List<WebElement> getWebElements(WebDriver driver, String xpathlocator) {
 		return driver.findElements(getXpath(xpathlocator));
 	}
 
@@ -491,7 +491,6 @@ public class BasePage {
 	public List<Integer> addElementToList(WebDriver driver, String listItem) {
 		List<WebElement> AllItems = getWebElements(driver, listItem);
 		List<Integer> list = new ArrayList<Integer>();
-		;
 		for (int i = 0; i < AllItems.size(); i++) {
 			String textItem = AllItems.get(i).getText().trim().replace("$", "").replace(",", "").replace(".", "");
 			int price = Integer.parseInt(textItem);
