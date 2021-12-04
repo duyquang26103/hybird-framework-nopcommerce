@@ -116,11 +116,6 @@ public class ComputersPageObject extends BasePage {
 		return checkNineProductDisplayed(driver, ComputersPageUI.PRODUCT_DISPLAYED);
 	}
 
-
-	public void clickToProductByIndex(String string) {
-		// TODO Auto-generated method stub
-		
-
 	public ProductPageObject clickToProductByIndex(String productIndex) {
 		scrollToElement(driver, ComputersPageUI.PRODUCT_NAME_BY_INDEX, productIndex);
 		waitForElementClickable(driver, ComputersPageUI.PRODUCT_NAME_BY_INDEX, productIndex);

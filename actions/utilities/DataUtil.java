@@ -62,9 +62,6 @@ public class DataUtil {
 		return faker.relationships().any();
 	}
 
-	public String getPassword() {
-		return faker.internet().password();
-	}
 
 
 }

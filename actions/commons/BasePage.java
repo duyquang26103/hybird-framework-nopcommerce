@@ -337,6 +337,11 @@ public class BasePage {
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
 		jsExecutor.executeScript("arguments[0].scrollIntoView(true);", getWebElement(driver, xpathlocator));
 	}
+	
+	public void scrollToElement(WebDriver driver, String xpathlocator, String...params) {
+		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+		jsExecutor.executeScript("arguments[0].scrollIntoView(true);", getWebElement(driver, getDymamicLocator(xpathlocator, params)));
+	}
 
 	public void scrollToElement(WebDriver driver, String xpathlocator, String... params) {
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
@@ -487,7 +492,12 @@ public class BasePage {
 		waitForElementVisible(driver, UserBasePageUI.TABLE_ROW_BY_ID_BY_COLUMN_INDEX_AND_BY_ROW_INDEX, tableID,rowIndex, String.valueOf(coulumnIndex));
 		return getElementText(driver, UserBasePageUI.TABLE_ROW_BY_ID_BY_COLUMN_INDEX_AND_BY_ROW_INDEX, tableID,rowIndex, String.valueOf(coulumnIndex));
 	}
-
+	
+	public String getTextInMessageIsDisplayedByID(WebDriver driver, String idName) {
+		waitForElementVisible(driver, UserBasePageUI.MESSAGE_TEXT_BY_ID, idName);
+		return getElementText(driver, UserBasePageUI.MESSAGE_TEXT_BY_ID, idName);
+	}
+	
 	public List<Integer> addElementToList(WebDriver driver, String listItem) {
 		List<WebElement> AllItems = getWebElements(driver, listItem);
 		List<Integer> list = new ArrayList<Integer>();

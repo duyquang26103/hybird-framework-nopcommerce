@@ -15,11 +15,15 @@ import org.testng.Assert;
 import org.testng.Reporter;
 import utilities.DataUtil;
 
+import utilities.DataUtil;
+
 public class BaseTest {
 	private WebDriver driver;
 	private String projectPath = System.getProperty("user.dir");
 	public static String correctEmail;
-	DataUtil fakerData;
+
+	private DataUtil fakerData;
+
 	protected final Log log;
 	
 	protected BaseTest() {
@@ -34,8 +38,7 @@ public class BaseTest {
 		
 		BROWSER browser = BROWSER.valueOf(browserName.toUpperCase());
 		if (browser == BROWSER.CHROME) {
-			System.setProperty("webdriver.chrome.driver",
-					projectPath + getFlash("browserDrivers") + "chromedriver.exe");
+			System.setProperty("webdriver.chrome.driver",projectPath + getFlash("browserDrivers") + "chromedriver.exe");
 			driver = new ChromeDriver();
 		} else if (browser == BROWSER.EDGE) {
 			System.setProperty("webdriver.edge.driver", projectPath + getFlash("browserDrivers") + "msedgedriver.exe");
@@ -57,8 +60,7 @@ public class BaseTest {
 
 		BROWSER browser = BROWSER.valueOf(browserName.toUpperCase());
 		if (browser == BROWSER.CHROME) {
-			System.setProperty("webdriver.chrome.driver",
-					projectPath + getFlash("browserDrivers") + "chromedriver.exe");
+			System.setProperty("webdriver.chrome.driver",projectPath + getFlash("browserDrivers") + "chromedriver.exe");
 			driver = new ChromeDriver();
 		} else if (browser == BROWSER.EDGE) {
 			System.setProperty("webdriver.edge.driver", projectPath + getFlash("browserDrivers") + "msedgedriver.exe");
@@ -75,6 +77,10 @@ public class BaseTest {
 		driver.manage().window().maximize();
 		return driver;
 
+	}
+	
+	public WebDriver getWebDriver() {
+		return this.driver;
 	}
 
 	private String getFlash(String folderName) {
@@ -93,6 +99,25 @@ public class BaseTest {
 		return "darken" + random.nextInt(9999) + "@gmail.com";
 	}
 	
+//	public String setCorrectEmail() {
+//		this.correctEmail = new DataUtil().getEmailAddress();
+//		return this.correctEmail;
+//	}
+//	
+//	public String getCorrectEmail() {
+//		return this.correctEmail;
+//	}
+	
+
+	public void setCorrectEmail() {
+		this.correctEmail = new DataUtil().getEmailAddress();
+	}
+	
+	public String getCorrectEmail() {
+		System.out.println(this.correctEmail);
+		return this.correctEmail;
+	}
+
 	private boolean checkTrue(boolean condition) {
 		boolean pass = true;
 		try {
@@ -110,6 +135,7 @@ public class BaseTest {
 		}
 		return pass;
 	}
+
 
 	protected boolean verifyTrue(boolean condition) {
 		return checkTrue(condition);
@@ -154,9 +180,7 @@ public class BaseTest {
 		return checkEquals(actual, expected);
 	}
 
-	public WebDriver getWebDriver() {
-		return this.driver;
-	}
+
 	
 	protected void closeBrowserAndDriver() {
 		String cmd = "";
@@ -226,5 +250,6 @@ public class BaseTest {
 			e.printStackTrace();
 		}
 	}
+	
 
 }
