@@ -14,7 +14,7 @@ public class LoginPO extends BasePage{
 	public DashBoardPO loginToSystem(String idUserName,String idPassword, String iDButton, String adminUserName, String adminPassword) {
 		inputTextBoxByID(driver, adminUserName,idUserName);
 		inputTextBoxByID(driver, adminPassword,idPassword);
-		clickOnButtonByID(driver, iDButton);
+		//clickOnButtonByID(driver, iDButton);
 		return PageGeneratorManager.dashBoardPage(driver);
 	}
 
