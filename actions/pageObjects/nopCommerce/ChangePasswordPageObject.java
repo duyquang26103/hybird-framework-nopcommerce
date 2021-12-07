@@ -34,7 +34,7 @@ public class ChangePasswordPageObject extends BasePage {
 	}
 
 	public HomePageObject clickToLogoutButton() {
-		sleepInSecond(2);
+		sleepInSecond(1);
 		waitForElementClickable(driver, ChangePasswordPageUI.LOGOUT_BUTTON);
 		clickToElement(driver, ChangePasswordPageUI.LOGOUT_BUTTON);
 		return PageGeneratorManager.getHomePage(driver);

@@ -10,9 +10,6 @@ import org.openqa.selenium.WebElement;
 import commons.BasePage;
 import pageUIs.nopCommerce.ComputersPageUI;
 
-import pageUIs.nopCommerce.HomePageUI;
-
-
 public class ComputersPageObject extends BasePage {
 	private WebDriver driver;
 
@@ -124,6 +121,4 @@ public class ComputersPageObject extends BasePage {
 
 	}
 
-	
-	
 }

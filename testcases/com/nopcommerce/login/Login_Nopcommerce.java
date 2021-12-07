@@ -40,7 +40,7 @@ public class Login_Nopcommerce extends BaseTest {
 	public void TC_01_Empty_Data(Method method) {
 		ExtentTestManager.startTest(method.getName(), "TC_01_Empty_Data");
 		ExtentTestManager.getTest().log(LogStatus.INFO, "Login 01_Empty_Data - Step 01: Click to Login link ");
-		loginPage = homePage.clickToLoginLink();
+		loginPage = homePage.clickToLoginPage();
 
 		ExtentTestManager.getTest().log(LogStatus.INFO, "Login 01_Empty_Data - Step 02: Click to Login button ");
 		loginPage.clickToLoginButton();

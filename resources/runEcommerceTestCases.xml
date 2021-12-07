@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Nopcomerce">
+	<parameter name="url" value="https://demo.nopcommerce.com/" />
+
+	<listeners>
+		<listener class-name="commons.MethodListener" />
+		<listener class-name="reportConfig.ExtentTestListener" />
+	</listeners>
+	<test name="run on Chrome">
+		<parameter name="browser" value="Chrome" />
+
+		<classes>
+
+			<class name="com.nopcommerce.commons.Common_01_Login_Data" />
+<!-- 			<class name="com.nopcommerce.register.Register_Nopcommerce" /> -->
+<!-- 			<class name="com.nopcommerce.login.Login_Nopcommerce" /> -->
+<!-- 			<class name="com.nopcommerce.myaccount.MyAccount_Nopcommerce" /> -->
+<!-- 			<class name="com.nopcommerce.search.Search_Nopcommerce" /> -->
+<!-- 			<class name="com.nopcommerce.sortdata.SortData_Nopcommerce" /> -->
+<!-- 			<class name="com.nopcommerce.wishlist.Wishlist_Nopcommerce" /> -->
+		</classes>
+	</test>
+
+
+</suite>	

@@ -43,7 +43,7 @@ public class Wishlist_Nopcommerce extends BaseTest {
 
 		email = "automation12@gmail.com";
 		password = "123123";
-		loginPage = homePage.clickToLoginLink();
+		loginPage = homePage.clickToLoginPage();
 
 		loginPage.setAllCookie(driver, Common_01_Login_Data.loginPageCookie);
 		sleepInSecond(3);
@@ -51,7 +51,7 @@ public class Wishlist_Nopcommerce extends BaseTest {
 
 		homePage = PageGeneratorManager.getHomePage(driver);
 		homePage.clickToImgNopcommerce();
-		verifyFalse(homePage.isHomePageSliderDisplayed());
+		verifyTrue(homePage.isHomePageSliderDisplayed());
 
 	}
 
@@ -271,7 +271,7 @@ public class Wishlist_Nopcommerce extends BaseTest {
 
 		ExtentTestManager.getTest().log(LogStatus.INFO,"Recenly_Review_Product_05 - Step 14: Open 'Recently viewed products' link at footer");
 		productPage.openFooterPageByName(driver, "Recently viewed products");
-		recentlyReviewPage = PageGeneratorManager.recentlyReviewPage(driver);
+		recentlyReviewPage = PageGeneratorManager.getRecentlyReviewPage(driver);
 
 		ExtentTestManager.getTest().log(LogStatus.INFO,"Recenly_Review_Product_05 - Step 15: Verify page only display three product");
 		verifyEquals(recentlyReviewPage.getNumberofProductRecentlyViewed(), 3);

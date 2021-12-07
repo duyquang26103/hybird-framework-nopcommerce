@@ -35,7 +35,7 @@ public class Search_Nopcommerce extends BaseTest {
 		password_01 = "123123";
 		password_02 = "123456";
 		
-		loginPage = homePage.clickToLoginLink();
+		loginPage = homePage.clickToLoginPage();
 		
 		loginPage.setAllCookie(driver, Common_01_Login_Data.loginPageCookie);
 		sleepInSecond(3);

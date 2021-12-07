@@ -12,13 +12,13 @@ public class HomePageObject extends BasePage {
 		this.driver = driver;
 	}
 
-	public RegisterPageObject clickToRegisterLink() {
+	public RegisterPageObject clickToRegisterPage() {
 		waitForElementClickable(driver, HomePageUI.REGISTER_LINK);
 		clickToElement(driver, HomePageUI.REGISTER_LINK);
 		return PageGeneratorManager.getRegisterPage(driver);
 	}
 
-	public LoginPageObject clickToLoginLink() {
+	public LoginPageObject clickToLoginPage() {
 		waitForElementClickable(driver, HomePageUI.LOGIN_LINK);
 		clickToElement(driver, HomePageUI.LOGIN_LINK);
 		return PageGeneratorManager.getLoginPage(driver);
@@ -60,8 +60,10 @@ public class HomePageObject extends BasePage {
 	}
 
 	public ProductPageObject clickToSecondProduct() {
-		// TODO Auto-generated method stub
-		return null;
+		scrollToElement(driver, HomePageUI.SECOND_PRODUCT_LINK);
+		waitForElementClickable(driver, HomePageUI.SECOND_PRODUCT_LINK);
+		clickToElement(driver, HomePageUI.SECOND_PRODUCT_LINK);
+		return PageGeneratorManager.getProductPage(driver);
 	}
 	
 }

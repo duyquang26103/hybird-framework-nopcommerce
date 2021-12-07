@@ -133,7 +133,7 @@ public class SortData_Nopcommerce extends BaseTest {
 
 	@AfterClass
 	public void afterClass() {
-		driver.quit();
+		closeBrowserAndDriver();
 	}
 
 	HomePageObject homePage;

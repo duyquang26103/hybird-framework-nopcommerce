@@ -31,7 +31,7 @@ public class Register_Nopcommerce extends BaseTest {
 		homePage = PageGeneratorManager.getHomePage(driver);
 		
 
-		loginPage = homePage.clickToLoginLink();
+		loginPage = homePage.clickToLoginPage();
 
 	}
 
