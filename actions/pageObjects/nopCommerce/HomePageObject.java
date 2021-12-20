@@ -65,5 +65,17 @@ public class HomePageObject extends BasePage {
 		clickToElement(driver, HomePageUI.SECOND_PRODUCT_LINK);
 		return PageGeneratorManager.getProductPage(driver);
 	}
+
+	public void inputSearchTextBox(String searchValue){
+		waitForElementVisible(driver,HomePageUI.SEARCH_TEXTBOX);
+		sendKeyToElement(driver,HomePageUI.SEARCH_TEXTBOX,searchValue);
+	}
+
+	public SearchPageObject clickToSearchButton() {
+		waitForElementClickable(driver, HomePageUI.SECOND_PRODUCT_LINK);
+		clickToElement(driver, HomePageUI.SECOND_PRODUCT_LINK);
+		return PageGeneratorManager.getSearchPage(driver);
+	}
+
 	
 }

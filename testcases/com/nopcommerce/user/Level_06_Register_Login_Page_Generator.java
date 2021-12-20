@@ -31,7 +31,7 @@ public class Level_06_Register_Login_Page_Generator extends BaseTest {
 	@Test
 	public void TC_01_Register_To_System() {
 
-		registerPage = homePage.clickToRegisterLink();
+		registerPage = homePage.clickToRegisterPage();
 
 		registerPage.clickToGenderRadioButton();
 
@@ -57,7 +57,7 @@ public class Level_06_Register_Login_Page_Generator extends BaseTest {
 
 	@Test
 	public void TC_02_Login_To_System() {
-		loginPage = homePage.clickToLoginLink();
+		loginPage = homePage.clickToLoginPage();
 
 		loginPage.inputEmailTextBox(email);
 

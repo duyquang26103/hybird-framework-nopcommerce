@@ -33,7 +33,7 @@ public class Level_14_Login_Log_Share_State extends BaseTest {
 		email = RandomEmail();
 		password = "123123";
 
-		loginPage = homePage.clickToLoginLink();
+		loginPage = homePage.clickToLoginPage();
 
 		loginPage.setAllCookie(driver, Common_01_Login_Data.loginPageCookie);
 		sleepInSecond(3);

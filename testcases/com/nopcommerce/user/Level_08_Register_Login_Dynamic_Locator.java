@@ -32,7 +32,7 @@ public class Level_08_Register_Login_Dynamic_Locator extends BaseTest {
 	@Test
 	public void TC_01_Register_To_System() {
 
-		registerPage = homePage.clickToRegisterLink();
+		registerPage = homePage.clickToRegisterPage();
 
 		registerPage.clickToGenderRadioButton();
 
@@ -56,7 +56,7 @@ public class Level_08_Register_Login_Dynamic_Locator extends BaseTest {
 
 	@Test
 	public void TC_02_Login_To_System() {
-		loginPage = homePage.clickToLoginLink();
+		loginPage = homePage.clickToLoginPage();
 
 		loginPage.inputEmailTextBox(email);
 

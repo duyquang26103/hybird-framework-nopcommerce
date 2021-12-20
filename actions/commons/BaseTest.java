@@ -2,6 +2,8 @@ package commons;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -11,6 +13,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
 import org.testng.Reporter;
 import utilities.DataUtil;
@@ -78,6 +82,29 @@ public class BaseTest {
 		return driver;
 
 	}
+
+	public WebDriver getDriverBrowsersBrowserStack( String appURL, String osName, String osVersion, String browserName, String browserVersion) {
+
+		DesiredCapabilities caps = new DesiredCapabilities();
+		caps.setCapability("os", osName);
+		caps.setCapability("os_version", osVersion);
+		caps.setCapability("browser", browserName);
+		caps.setCapability("browser_version", browserVersion);
+		caps.setCapability("browserstack.local", "false");
+		caps.setCapability("browserstack.debug", "true");
+		caps.setCapability("name", "Run on " + osName + " and" + browserName + " with version " + browserVersion);
+
+		try {
+			driver = new RemoteWebDriver(new URL(GlobalConstants.BROWSER_STACK_URL),caps);
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driver.get(appURL);
+		driver.manage().window().maximize();
+		return driver;
+
+	}
 	
 	public WebDriver getWebDriver() {
 		return this.driver;
@@ -98,23 +125,12 @@ public class BaseTest {
 		Random random = new Random();
 		return "darken" + random.nextInt(9999) + "@gmail.com";
 	}
-	
-//	public String setCorrectEmail() {
-//		this.correctEmail = new DataUtil().getEmailAddress();
-//		return this.correctEmail;
-//	}
-//	
-//	public String getCorrectEmail() {
-//		return this.correctEmail;
-//	}
-	
 
 	public void setCorrectEmail() {
 		this.correctEmail = new DataUtil().getEmailAddress();
 	}
 	
 	public String getCorrectEmail() {
-		System.out.println(this.correctEmail);
 		return this.correctEmail;
 	}
 

@@ -44,7 +44,7 @@ public class Level_03_Apply_Page_Object {
 		driver.get("https://demo.nopcommerce.com/");
 		homePage = new HomePageObject(driver);
 		
-		homePage.clickToRegisterLink();
+		homePage.clickToRegisterPage();
 		
 		registerPage = new RegisterPageObject(driver);
 		
@@ -72,7 +72,7 @@ public class Level_03_Apply_Page_Object {
 
 	@Test
 	public void TC_02_Login_To_System() {
-		homePage.clickToLoginLink();
+		homePage.clickToLoginPage();
 		
 		loginPage = new LoginPageObject(driver);
 		

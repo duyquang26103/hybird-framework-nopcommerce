@@ -3,6 +3,7 @@ package pageObjects.nopCommerce;
 import org.openqa.selenium.WebDriver;
 
 import commons.BasePage;
+import pageUIs.nopCommerce.ComputersPageUI;
 import pageUIs.nopCommerce.HomePageUI;
 import pageUIs.nopCommerce.SearchPageUI;
 
@@ -82,6 +83,14 @@ public class SearchPageObject extends BasePage {
 		waitForAllsElementVisible(driver, SearchPageUI.MANUFACTURER_DROPDOWN);
 		selectItemInDefaultDropdownByText(driver, SearchPageUI.MANUFACTURER_DROPDOWN, manufacturerName);
 		
+	}
+
+	public ProductPageObject clickToProductByIndex(String productIndex) {
+		scrollToElement(driver, SearchPageUI.PRODUCT_NAME_BY_INDEX, productIndex);
+		waitForElementClickable(driver, SearchPageUI.PRODUCT_NAME_BY_INDEX, productIndex);
+		clickToElement(driver, SearchPageUI.PRODUCT_NAME_BY_INDEX, productIndex);
+		return PageGeneratorManager.getProductPage(driver);
+
 	}
 
 }

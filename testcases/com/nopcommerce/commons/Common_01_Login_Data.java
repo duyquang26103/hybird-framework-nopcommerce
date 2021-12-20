@@ -30,7 +30,7 @@ public class Common_01_Login_Data extends BaseTest {
 		password = "123123";
 		
 		log.info("Common 01 - Step 01: Click to 'Register' Link ");
-		registerPage = homePage.clickToRegisterLink();
+		registerPage = homePage.clickToRegisterPage();
 		
 		log.info("Common 01 - Step 02: Click to Gender Radio Button ");
 		registerPage.clickToGenderRadioButton();
@@ -60,7 +60,7 @@ public class Common_01_Login_Data extends BaseTest {
 		homePage = registerPage.clickToLogOutButton();
 		
 		log.info("Common 01 - Step 11: Click on 'Login' Link");
-		loginPage = homePage.clickToLoginLink();
+		loginPage = homePage.clickToLoginPage();
 
 		log.info("Common 01 - Step 12: Input to 'Email' textbox:" + email );
 		loginPage.inputEmailTextBox(email);

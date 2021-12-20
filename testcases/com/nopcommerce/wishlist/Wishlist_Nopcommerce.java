@@ -12,14 +12,7 @@ import com.nopcommerce.commons.Common_01_Login_Data;
 import com.relevantcodes.extentreports.LogStatus;
 
 import commons.BaseTest;
-import pageObjects.nopCommerce.CompareListPageObject;
-import pageObjects.nopCommerce.ComputersPageObject;
-import pageObjects.nopCommerce.HomePageObject;
-import pageObjects.nopCommerce.LoginPageObject;
-import pageObjects.nopCommerce.PageGeneratorManager;
-import pageObjects.nopCommerce.ProductPageObject;
-import pageObjects.nopCommerce.RecentlyReviewPageObject;
-import pageObjects.nopCommerce.WishlistPageObject;
+import pageObjects.nopCommerce.*;
 import reportConfig.ExtentTestManager;
 
 public class Wishlist_Nopcommerce extends BaseTest {
@@ -33,6 +26,7 @@ public class Wishlist_Nopcommerce extends BaseTest {
 	ComputersPageObject computersPage;
 	CompareListPageObject compareListPage;
 	RecentlyReviewPageObject recentlyReviewPage;
+	ShoppingCartPageObject shoppingCartPage;
 
 	@Parameters({ "browser", "url" })
 	@BeforeClass
@@ -97,7 +91,7 @@ public class Wishlist_Nopcommerce extends BaseTest {
 		ExtentTestManager.getTest().log(LogStatus.INFO,"Add_Product_To_Cart _02 - Step 01: Click to 'Add to Cart' Check Box ");
 		wishlistPage.clickToAddToCartCheckBox();
 
-		ExtentTestManager.getTest().log(LogStatus.INFO,"Add_Product_To_Cart _02 - Step 02: Click to 'Add to Cart' Butt ");
+		ExtentTestManager.getTest().log(LogStatus.INFO,"Add_Product_To_Cart _02 - Step 02: Click to 'Add to Cart' Button ");
 		wishlistPage.clickToAddToCartButton();
 
 		ExtentTestManager.getTest().log(LogStatus.INFO,	"Add_Product_To_Cart _02 - Step 03: Verify Wishlist is empty ");
@@ -105,6 +99,17 @@ public class Wishlist_Nopcommerce extends BaseTest {
 
 		ExtentTestManager.getTest().log(LogStatus.INFO,"Add_Product_To_Cart _02 - Step 04:  Verify Shopping Cart have one qty ");
 		verifyEquals(wishlistPage.getShoppingCartisAdded(), "(1)");
+
+		ExtentTestManager.getTest().log(LogStatus.INFO,	"Add_Product_To_Cart _02 - Step 05: Click to 'Wishlist' Link at footer");
+		wishlistPage.openFooterPageByName(driver, "Shopping cart");
+		shoppingCartPage = PageGeneratorManager.getShoppingCartPage(driver);
+
+		ExtentTestManager.getTest().log(LogStatus.INFO,	"Add_Product_To_Cart _02 - Step 06: Click to 'Remove' button ");
+		shoppingCartPage.clickOnRemoveButton();
+
+		ExtentTestManager.getTest().log(LogStatus.INFO,	"Add_Product_To_Cart _02 - Step 03: Verify Wishlist is empty ");
+		verifyTrue(shoppingCartPage.isShoppingCartEmpty());
+
 		ExtentTestManager.endTest();
 	}
 
@@ -112,7 +117,7 @@ public class Wishlist_Nopcommerce extends BaseTest {
 	public void TC_03_Delete_Wishlist(Method method) {
 		ExtentTestManager.startTest(method.getName(), "TC_03_Delete_Wishlist");
 		ExtentTestManager.getTest().log(LogStatus.INFO,	"Delete_Wishlist _03 - Step 01: Click to 'Nopcommerce' image");
-		wishlistPage.clickToImgNopcommerce(driver);
+		shoppingCartPage.clickToImgNopcommerce(driver);
 		homePage = PageGeneratorManager.getHomePage(driver);
 
 		ExtentTestManager.getTest().log(LogStatus.INFO,	"Delete_Wishlist _03 - Step 02: Click to Random product");
@@ -221,59 +226,59 @@ public class Wishlist_Nopcommerce extends BaseTest {
 	}
 
 	@Test
-	public void TC_05_Recenly_Review_Product(Method method) {
-		ExtentTestManager.startTest(method.getName(), "TC_05_Recenly_Review_Product");
-		ExtentTestManager.getTest().log(LogStatus.INFO,"Recenly_Review_Product_05 - Step 01: Click to 'NopCommerce' image ");
+	public void TC_05_Recently_Review_Product(Method method) {
+		ExtentTestManager.startTest(method.getName(), "TC_05_Recently_Review_Product");
+		ExtentTestManager.getTest().log(LogStatus.INFO,"Recently_Review_Product_05 - Step 01: Click to 'NopCommerce' image ");
 		compareListPage.clickToImgNopcommerce(driver);
 		homePage = PageGeneratorManager.getHomePage(driver);
 
-		ExtentTestManager.getTest().log(LogStatus.INFO,"Recenly_Review_Product_05 - Step 02: Hover to 'Computer' Menu");
+		ExtentTestManager.getTest().log(LogStatus.INFO,"Recently_Review_Product_05 - Step 02: Hover to 'Computer' Menu");
 		homePage.moveToComputerLink();
 
-		ExtentTestManager.getTest().log(LogStatus.INFO,"Recenly_Review_Product_05 - Step 3: Click to 'Note Book' submenu ");
+		ExtentTestManager.getTest().log(LogStatus.INFO,"Recently_Review_Product_05 - Step 3: Click to 'Note Book' submenu ");
 		computersPage = homePage.clickToNoteBookLink();
 
-		ExtentTestManager.getTest().log(LogStatus.INFO,"Recenly_Review_Product_05 - Step 4: Click to name of first product");
+		ExtentTestManager.getTest().log(LogStatus.INFO,"Recently_Review_Product_05 - Step 4: Click to name of first product");
 		productPage = computersPage.clickToProductByIndex("1");
-		verifyTrue(productPage.isProductNameisDisplayed());
+		verifyTrue(productPage.isProductNameIsDisplayed());
 
-		ExtentTestManager.getTest().log(LogStatus.INFO,"Recenly_Review_Product_05 - Step 5:Back to previous page");
+		ExtentTestManager.getTest().log(LogStatus.INFO,"Recently_Review_Product_05 - Step 5:Back to previous page");
 		productPage.backToPage(driver);
 		computersPage = PageGeneratorManager.getComputerPage(driver);
 
-		ExtentTestManager.getTest().log(LogStatus.INFO,"Recenly_Review_Product_05 - Step 6: Click to name of second product");
+		ExtentTestManager.getTest().log(LogStatus.INFO,"Recently_Review_Product_05 - Step 6: Click to name of second product");
 		productPage = computersPage.clickToProductByIndex("2");
-		verifyTrue(productPage.isProductNameisDisplayed());
+		verifyTrue(productPage.isProductNameIsDisplayed());
 
-		ExtentTestManager.getTest().log(LogStatus.INFO,"Recenly_Review_Product_05 - Step 7: Back to previous page ");
+		ExtentTestManager.getTest().log(LogStatus.INFO,"Recently_Review_Product_05 - Step 7: Back to previous page ");
 		productPage.backToPage(driver);
 		computersPage = PageGeneratorManager.getComputerPage(driver);
 
-		ExtentTestManager.getTest().log(LogStatus.INFO,"Recenly_Review_Product_05 - Step 8:Click to name of thrid product");
+		ExtentTestManager.getTest().log(LogStatus.INFO,"Recently_Review_Product_05 - Step 8:Click to name of thrid product");
 		productPage = computersPage.clickToProductByIndex("3");
-		verifyTrue(productPage.isProductNameisDisplayed());
+		verifyTrue(productPage.isProductNameIsDisplayed());
 
-		ExtentTestManager.getTest().log(LogStatus.INFO,"Recenly_Review_Product_05 - Step 9: Back to previous page");
+		ExtentTestManager.getTest().log(LogStatus.INFO,"Recently_Review_Product_05 - Step 9: Back to previous page");
 		productPage.backToPage(driver);
 		computersPage = PageGeneratorManager.getComputerPage(driver);
 
-		ExtentTestManager.getTest().log(LogStatus.INFO,"Recenly_Review_Product_05 - Step 10:Click to name of fourth product");
+		ExtentTestManager.getTest().log(LogStatus.INFO,"Recently_Review_Product_05 - Step 10:Click to name of fourth product");
 		productPage = computersPage.clickToProductByIndex("4");
-		verifyTrue(productPage.isProductNameisDisplayed());
+		verifyTrue(productPage.isProductNameIsDisplayed());
 
-		ExtentTestManager.getTest().log(LogStatus.INFO,"Recenly_Review_Product_05 - Step 11: Back to previous page");
+		ExtentTestManager.getTest().log(LogStatus.INFO,"Recently_Review_Product_05 - Step 11: Back to previous page");
 		productPage.backToPage(driver);
 		computersPage = PageGeneratorManager.getComputerPage(driver);
 
-		ExtentTestManager.getTest().log(LogStatus.INFO,"Recenly_Review_Product_05 - Step 12:Click to name of fifth product");
+		ExtentTestManager.getTest().log(LogStatus.INFO,"Recently_Review_Product_05 - Step 12:Click to name of fifth product");
 		productPage = computersPage.clickToProductByIndex("5");
-		verifyTrue(productPage.isProductNameisDisplayed());
+		verifyTrue(productPage.isProductNameIsDisplayed());
 
-		ExtentTestManager.getTest().log(LogStatus.INFO,"Recenly_Review_Product_05 - Step 14: Open 'Recently viewed products' link at footer");
+		ExtentTestManager.getTest().log(LogStatus.INFO,"Recently_Review_Product_05 - Step 14: Open 'Recently viewed products' link at footer");
 		productPage.openFooterPageByName(driver, "Recently viewed products");
 		recentlyReviewPage = PageGeneratorManager.getRecentlyReviewPage(driver);
 
-		ExtentTestManager.getTest().log(LogStatus.INFO,"Recenly_Review_Product_05 - Step 15: Verify page only display three product");
+		ExtentTestManager.getTest().log(LogStatus.INFO,"Recently_Review_Product_05 - Step 15: Verify page only display three product");
 		verifyEquals(recentlyReviewPage.getNumberofProductRecentlyViewed(), 3);
 		ExtentTestManager.endTest();
 	}

@@ -30,7 +30,7 @@ public class Level_04_Register_Login_Multiple_Browser extends BaseTest {
 	@Test
 	public void TC_01_Register_To_System() {
 
-		homePage.clickToRegisterLink();
+		homePage.clickToRegisterPage();
 
 		registerPage = new RegisterPageObject(driver);
 
@@ -58,7 +58,7 @@ public class Level_04_Register_Login_Multiple_Browser extends BaseTest {
 
 	@Test
 	public void TC_02_Login_To_System() {
-		homePage.clickToLoginLink();
+		homePage.clickToLoginPage();
 
 		loginPage = new LoginPageObject(driver);
 

@@ -16,7 +16,8 @@ public class PageGeneratorManager {
 	private static WishlistPageObject wishlistPage;
 	private static CompareListPageObject compareListPage;
 	private static RecentlyReviewPageObject recentlyReviewPage;
-		
+	private static ShoppingCartPageObject shoppingCartPageObject;
+
 	private PageGeneratorManager() {
 		
 	}
@@ -86,4 +87,7 @@ public class PageGeneratorManager {
 		return new RecentlyReviewPageObject(driver);
 	}
 
+    public static ShoppingCartPageObject getShoppingCartPage(WebDriver driver) {
+		return new ShoppingCartPageObject(driver);
+    }
 }

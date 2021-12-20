@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Nopcomerce">
+
+
+	<listeners>
+		<listener class-name="commons.MethodListener" />
+		<listener class-name="reportConfig.ExtentTestListener" />
+	</listeners>
+
+	<test name="run on Chrome">
+		<parameter name="url" value="https://demo.nopcommerce.com/" />
+		<parameter name="os" value="Windows" />
+		<parameter name="os_version" value="10" />
+		<parameter name="browser" value="Chrome" />
+		<parameter name="browser_version" value="latest" />
+		<classes>
+			<class name="com.nopcommerce.cloud.Register_Nopcommerce_BrowserStack" />
+		</classes>
+	</test>
+
+	<test name="run on Firefox">
+		<parameter name="url" value="https://demo.nopcommerce.com/" />
+		<parameter name="os" value="Windows" />
+		<parameter name="os_version" value="10" />
+		<parameter name="browser" value="Firefox" />
+		<parameter name="browser_version" value="latest" />
+		<classes>
+			<class name="com.nopcommerce.cloud.Register_Nopcommerce_BrowserStack" />
+		</classes>
+	</test>
+
+
+</suite>	

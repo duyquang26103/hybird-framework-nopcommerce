@@ -37,7 +37,7 @@ public class Level_13_Register_Login_Log_ExtentV2 extends BaseTest {
 	public void TC_01_Register_To_System(Method method) {
 		ExtentTestManager.startTest(method.getName(), "TC_01_Register_To_System");
 		ExtentTestManager.getTest().log(LogStatus.INFO,"User 01_Register - Step 01: Click to 'Register' Link ");
-		registerPage = homePage.clickToRegisterLink();
+		registerPage = homePage.clickToRegisterPage();
 		
 		ExtentTestManager.getTest().log(LogStatus.INFO,"User 01_Register - Step 02: Click to Gender Radio Button ");
 		registerPage.clickToGenderRadioButton();
@@ -72,7 +72,7 @@ public class Level_13_Register_Login_Log_ExtentV2 extends BaseTest {
 	public void TC_02_Login_To_System(Method method) {
 		ExtentTestManager.startTest(method.getName(), "TC_02_Login_To_System");
 		ExtentTestManager.getTest().log(LogStatus.INFO,"User 02_Login - Step 01: Click on 'Login' Link");
-		loginPage = homePage.clickToLoginLink();
+		loginPage = homePage.clickToLoginPage();
 
 		ExtentTestManager.getTest().log(LogStatus.INFO,"User 02_Login - Step 02: Input to 'Email' textbox:" + email );
 		loginPage.inputEmailTextBox(email);

@@ -19,12 +19,12 @@ public class Register_Nopcommerce extends BaseTest {
 	@Parameters({ "browser", "url" })
 	@BeforeClass
 	public void beforeClass(String browserName, String appUrl) {
-	
+		setCorrectEmail();
 		wrongEmail = "####";
 		firstName = "Abner";
 		lastName = "Sib";
 		password = "123123";
-		email ="automationtest153@gmail.com";
+		email = getCorrectEmail();
 		undersixcharPassword = "123";
 		wrongPassword = "123456";
 		driver = getDriverBrowsers(browserName, appUrl);
@@ -149,10 +149,13 @@ public class Register_Nopcommerce extends BaseTest {
 		ExtentTestManager.getTest().log(LogStatus.INFO, "Register 06_Wrong_Confirm_Password - Step 01: Input to 'Password' textbox:" + undersixcharPassword);
 		registerPage.inputPasswordTextBox(password);
 
-		ExtentTestManager.getTest().log(LogStatus.INFO, "Register 06_Wrong_Confirm_Password - Step 01: Input to 'Confirm Password' textbox:" + wrongPassword);
+		ExtentTestManager.getTest().log(LogStatus.INFO, "Register 06_Wrong_Confirm_Password - Step 02: Input to 'Confirm Password' textbox:" + wrongPassword);
 		registerPage.inputConfirmPasswordTextBox(wrongPassword);
 
-		ExtentTestManager.getTest().log(LogStatus.INFO, "Register 06_Wrong_Confirm_Password - Step 02: Verify No match password message is displayed");
+		ExtentTestManager.getTest().log(LogStatus.INFO, "Register 06_Wrong_Confirm_Password - Step 03: Click on Register button");
+		registerPage.clickToRegisterButton();
+
+		ExtentTestManager.getTest().log(LogStatus.INFO, "Register 06_Wrong_Confirm_Password - Step 04: Verify No match password message is displayed");
 		verifyEquals(registerPage.getErrorMessageTextByID( "ConfirmPassword-error"),"The password and confirmation password do not match.");
 		ExtentTestManager.endTest();
 	}

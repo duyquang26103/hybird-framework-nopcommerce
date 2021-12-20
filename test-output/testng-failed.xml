@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Nopcomerce]">
+  <parameter name="url" value="https://demo.nopcommerce.com/"/>
+  <listeners>
+    <listener class-name="commons.MethodListener"/>
+    <listener class-name="reportConfig.ExtentTestListener"/>
+  </listeners>
+  <test thread-count="5" name="run on Chrome(failed)">
+    <parameter name="browser" value="Chrome"/>
+    <classes>
+      <class name="com.nopcommerce.register.Register_Nopcommerce">
+        <methods>
+          <include name="TC_03_Valid_Data" invocation-numbers="0"/>
+          <include name="TC_06_Wrong_Confirm_Password" invocation-numbers="0"/>
+          <include name="afterClass"/>
+          <include name="beforeClass"/>
+        </methods>
+      </class> <!-- com.nopcommerce.register.Register_Nopcommerce -->
+      <class name="com.nopcommerce.login.Login_Nopcommerce">
+        <methods>
+          <include name="beforeClass"/>
+          <include name="afterClass"/>
+          <include name="TC_06_Valid_Data" invocation-numbers="0"/>
+          <include name="TC_05_Wrong_Password_And_Correct_Email" invocation-numbers="0"/>
+        </methods>
+      </class> <!-- com.nopcommerce.login.Login_Nopcommerce -->
+    </classes>
+  </test> <!-- run on Chrome(failed) -->
+</suite> <!-- Failed suite [Nopcomerce] -->
