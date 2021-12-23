@@ -3,16 +3,18 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.nopcommerce.wishlist.Wishlist_Nopcommerce">
+      <class name="com.nopcommerce.cloud.Register_Nopcommerce_BrowserStack">
         <methods>
-          <include name="afterClass"/>
-          <include name="TC_02_Add_Product_To_Cart"/>
+          <include name="TC_04_Exist_Email"/>
+          <include name="TC_05_Password_Less_Than_6_Char"/>
           <include name="beforeClass"/>
-          <include name="TC_04_Add_Product_To_Compare"/>
-          <include name="TC_01_Add_To_Wishlist"/>
-          <include name="TC_03_Delete_Wishlist"/>
+          <include name="TC_03_Valid_Data"/>
+          <include name="TC_01_Empty_Data"/>
+          <include name="TC_02_Wrong_Email"/>
+          <include name="TC_06_Wrong_Confirm_Password"/>
+          <include name="afterClass"/>
         </methods>
-      </class> <!-- com.nopcommerce.wishlist.Wishlist_Nopcommerce -->
+      </class> <!-- com.nopcommerce.cloud.Register_Nopcommerce_BrowserStack -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

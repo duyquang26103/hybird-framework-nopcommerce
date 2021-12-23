@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Nopcomerce">
+
+	<parameter name="envName" value="local" />
+	<parameter name="serverName" value="dev" />
+
+	<listeners>
+		<listener class-name="commons.MethodListener" />
+		<listener class-name="reportConfig.ExtentTestListener" />
+	</listeners>
+
+	<test name="run on Firefox">
+		<parameter name="browser" value="firefox" />
+		<classes>
+			<class name="com.nopcommerce.cloud.Register_Nopcommerce_BrowserStack" />
+		</classes>
+	</test>
+
+
+</suite>	

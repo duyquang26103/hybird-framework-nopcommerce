@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Nopcomerce">
+    <parameter name="serverName" value="dev"/>
+    <parameter name="envName" value="grid"/>
+
+    <listeners>
+        <listener class-name="commons.MethodListener"/>
+        <listener class-name="reportConfig.ExtentTestListener"/>
+    </listeners>
+
+    <test name="run on Chrome">
+        <parameter name="browser" value="Chrome"/>
+        <parameter name="ipAddress" value="192.168.1.10"/>
+        <parameter name="portNumber" value="5555"/>
+        <classes>
+            <class name="com.nopcommerce.register.Register_Nopcommerce"/>
+        </classes>
+    </test>
+
+    <test name="run on Firefox">
+        <parameter name="browser" value="Firefox"/>
+        <parameter name="ipAddress" value="192.168.1.11"/>
+        <parameter name="portNumber" value="6666"/>
+        <classes>
+            <class name="com.nopcommerce.register.Register_Nopcommerce"/>
+        </classes>
+    </test>
+
+
+</suite>	

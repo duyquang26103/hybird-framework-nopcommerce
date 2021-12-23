@@ -5,6 +5,7 @@ import commons.BaseTest;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pageObjects.nopCommerce.HomePageObject;
@@ -19,9 +20,9 @@ public class Register_Nopcommerce_BrowserStack extends BaseTest {
 	WebDriver driver;
 	String wrongEmail, firstName, lastName,password,email, undersixcharPassword,wrongPassword;
 
-	@Parameters({ "url", "os" , "os_version","browser" , "browser_version"})
+	@Parameters({"envName", "serverName", "browser","ipAddress", "portNumber","osName","osVersion"})
 	@BeforeClass
-	public void beforeClass(String appURL, String osName, String osVersion, String browserName, String browserVersion) {
+	public void beforeClass(@Optional("local") String envName,@Optional("staging") String serverName, @Optional("chrome") String browserName, @Optional("localhost") String ipAddress,@Optional("4444") String portNumber, @Optional("Windows") String osName, @Optional("10") String osVersion) {
 		setCorrectEmail();
 		wrongEmail = "####";
 		firstName = "Abner";
@@ -30,7 +31,7 @@ public class Register_Nopcommerce_BrowserStack extends BaseTest {
 		email = getCorrectEmail();
 		undersixcharPassword = "123";
 		wrongPassword = "123456";
-		driver = getDriverBrowsersBrowserStack(appURL,osName,osVersion,browserName,browserVersion);
+		driver = getDriverBrowsers(envName, serverName, browserName, ipAddress, portNumber, osName, osVersion);
 		homePage = PageGeneratorManager.getHomePage(driver);
 		loginPage = homePage.clickToLoginPage();
 

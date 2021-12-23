@@ -164,5 +164,6 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="commons-lang3-3.5" level="project" />
+    <orderEntry type="library" name="webdrivermanager-4.4.3" level="project" />
   </component>
 </module>

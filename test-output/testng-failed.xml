@@ -1,30 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Failed suite [Nopcomerce]">
-  <parameter name="url" value="https://demo.nopcommerce.com/"/>
-  <listeners>
-    <listener class-name="commons.MethodListener"/>
-    <listener class-name="reportConfig.ExtentTestListener"/>
-  </listeners>
-  <test thread-count="5" name="run on Chrome(failed)">
-    <parameter name="browser" value="Chrome"/>
+<suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.nopcommerce.register.Register_Nopcommerce">
+      <class name="com.nopcommerce.cloud.Register_Nopcommerce_BrowserStack">
         <methods>
-          <include name="TC_03_Valid_Data" invocation-numbers="0"/>
-          <include name="TC_06_Wrong_Confirm_Password" invocation-numbers="0"/>
-          <include name="afterClass"/>
+          <include name="TC_04_Exist_Email"/>
+          <include name="TC_05_Password_Less_Than_6_Char"/>
           <include name="beforeClass"/>
-        </methods>
-      </class> <!-- com.nopcommerce.register.Register_Nopcommerce -->
-      <class name="com.nopcommerce.login.Login_Nopcommerce">
-        <methods>
-          <include name="beforeClass"/>
+          <include name="TC_03_Valid_Data"/>
+          <include name="TC_01_Empty_Data"/>
+          <include name="TC_02_Wrong_Email"/>
+          <include name="TC_06_Wrong_Confirm_Password"/>
           <include name="afterClass"/>
-          <include name="TC_06_Valid_Data" invocation-numbers="0"/>
-          <include name="TC_05_Wrong_Password_And_Correct_Email" invocation-numbers="0"/>
         </methods>
-      </class> <!-- com.nopcommerce.login.Login_Nopcommerce -->
+      </class> <!-- com.nopcommerce.cloud.Register_Nopcommerce_BrowserStack -->
     </classes>
-  </test> <!-- run on Chrome(failed) -->
-</suite> <!-- Failed suite [Nopcomerce] -->
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->

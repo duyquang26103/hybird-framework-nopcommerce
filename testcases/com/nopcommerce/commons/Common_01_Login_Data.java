@@ -4,7 +4,9 @@ import java.util.Set;
 
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 
 import commons.BaseTest;
@@ -19,11 +21,12 @@ public class Common_01_Login_Data extends BaseTest {
 	String email, password;
 	public static Set<Cookie> loginPageCookie;
 
-	@Parameters({ "browser", "url" })
-	@BeforeTest
-	public void beforeClass(String browserName, String appUrl) {
-		log.info("Pre-Condition - Step 01: Open browser '" + browserName + "' and navigate to '" + appUrl + "'"); 
-		driver = getDriverBrowsers(browserName, appUrl);
+	 @Parameters({"envName", "serverName", "browser","ipAddress", "portNumber","osName","osVersion"})
+	    @BeforeClass
+	    public void beforeClass(@Optional("local") String envName, @Optional("dev") String serverName, @Optional("chrome") String browserName, @Optional("localhost") String ipAddress,@Optional("4444") String portNumber,@Optional("Windows") String osName, @Optional("10") String osVersion) {
+	    	
+		//log.info("Pre-Condition - Step 01: Open browser '" + browserName + "' and navigate to '" + appUrl + "'"); 
+        driver = getDriverBrowsers(envName, serverName, browserName, ipAddress, portNumber, osName, osVersion);
 		homePage = PageGeneratorManager.getHomePage(driver);
 		
 		email = RandomEmail();
